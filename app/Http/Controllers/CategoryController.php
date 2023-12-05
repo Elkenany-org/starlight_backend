@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
-use Illuminate\Http\Request;
 use File;
+use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
@@ -22,20 +22,22 @@ class CategoryController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate($request,[
-            'name'=>'required',
-            'image'=>'required'
-        ]);
+        // make request separated for this function name and image  
+        // $this->validate($request,[
+        //     'name'=>'required',
+        //     'image'=>'required'
+        // ]);
+        
         $image_name = $request->image->getClientOriginalName();
         $image_name = time().$image_name;
         $path = 'images/main/categories';
         $request->image->move($path,$image_name);
 
-
         Category::create([
             'name'=>$request->name,
             'image'=> $path.'/'.$image_name
         ]);
+        
         return redirect()->route('category.index');
     }
 
