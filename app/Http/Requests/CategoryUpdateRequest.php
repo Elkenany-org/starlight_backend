@@ -24,7 +24,8 @@ class CategoryUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name'=>'required',
+            'image'=>'nullable|mimes:png,jpg,jpeg,svg'
         ];
     }
 }

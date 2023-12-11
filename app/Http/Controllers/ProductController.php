@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
 use App\Models\Category;
-use Illuminate\Http\Request;
+use App\Models\Product;
 use File;
+use Illuminate\Http\Request;
 
 
 class ProductController extends Controller
@@ -57,7 +57,6 @@ class ProductController extends Controller
             $i++;
         }
         
-
         $social_image_name = "";
         if($request->social_image != null)
         {
@@ -78,13 +77,14 @@ class ProductController extends Controller
 
             'social_title'=> $request->social_title,
             'social_image'=> $social_image_name,
-            'social_decription'=> $request->social_decription,
+            'social_description'=> $request->social_description,
             'social_alt_text'=> $request->social_alt_text,
 
             'meta_title'=> $request->meta_title,
             'meta_link'=> $request->meta_link,
-            'meta_decription'=> $request->meta_decription,
+            'meta_description'=> $request->meta_description,
         ]);
+        
         return redirect()->route('Products.index');
     }
     
@@ -97,13 +97,16 @@ class ProductController extends Controller
     
     public function update(Request $request,$id)
     {
+        
         $request->validate([
             'title' => 'required',
             'category_id' => 'required',
             'shortdescription' => 'required',
             'description' => 'required',
         ]);
+
         $product = Product::find($id);
+        
         if($request->alt_text != null)
         {
             $images_alt = [];
@@ -115,7 +118,6 @@ class ProductController extends Controller
             }
             $product->alt_text = $images_alt;
         }
-
 
         if($request->images != null)
         {
@@ -148,12 +150,10 @@ class ProductController extends Controller
             $product->images = $images_name;
         }
         
-        
         $product->title = $request->title;
         $product->category_id = $request->category_id;
         $product->description = $request->description;
         $product->focus_keyword = $request->focus_keyword;
-        
         
         $product->social_title = $request->social_title;
         $product->social_description = $request->social_description;
@@ -171,7 +171,6 @@ class ProductController extends Controller
         }
         $product->social_alt_text = $request->social_alt_text;
         
-        
         $product->meta_title = $request->meta_title;
         $product->meta_link = $request->meta_link;
         $product->meta_description = $request->meta_description;
@@ -187,6 +186,7 @@ class ProductController extends Controller
         $product->delete();
         return redirect()->route('Products.index');
     }
+    
     public function restore($id)
     {
         $product = Product::withTrashed()->find($id);    

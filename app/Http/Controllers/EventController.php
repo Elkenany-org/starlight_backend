@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
-use Illuminate\Http\Request;
 use File;
+use Illuminate\Http\Request;
 
 
 class EventController extends Controller
@@ -53,7 +53,6 @@ class EventController extends Controller
             $request->social_image->move($path , $social_image_name);
         }
         
-        
         Event::create([
             'title'=> $request->title,
             'shortdescription'=> $request->shortdescription,
@@ -63,13 +62,13 @@ class EventController extends Controller
             'focus_keyword'=> $request->focus_keyword,
 
             'social_title'=> $request->social_title,
-            'social_decription'=> $request->social_decription,
+            'social_description'=> $request->social_description,
             'social_image'=> $social_image_name,
             'social_alt_text'=> $request->social_alt_text,
 
             'meta_title'=> $request->meta_title,
             'meta_link'=> $request->meta_link,
-            'meta_decription'=> $request->meta_decription,
+            'meta_description'=> $request->meta_description,
         ]);
         return redirect()->route('Events.index');
     }
@@ -82,6 +81,7 @@ class EventController extends Controller
     
     public function update(Request $request, $id)
     {
+        dd($request->all());
         $request->validate([
             'title' => 'required',
             'shortdescription' => 'required',
@@ -143,6 +143,7 @@ class EventController extends Controller
         $event->delete();
         return redirect()->route('Events.index');
     }
+    
     public function restore($id)
     {
         $event = Event::withTrashed()->find($id);    
@@ -163,6 +164,7 @@ class EventController extends Controller
         $event->forceDelete();
         return redirect()->route('Events.archive'); 
     }
+    
     // public function search(Request $request)
     // {
     //     return $this->description_search($request , 'description' , new Article() , 'Articles' , 'articles',false,'index');

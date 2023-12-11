@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CategoryStoreRequest;
+use App\Http\Requests\CategoryUpdateRequest;
 use App\Models\Category;
 use File;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 class CategoryController extends Controller
 {
@@ -20,67 +23,53 @@ class CategoryController extends Controller
         return view('Categories.create');
     }
 
-    public function store(Request $request)
+    public function store(CategoryStoreRequest $request)
     {
-        // make request separated for this function name and image  
-        // $this->validate($request,[
-        //     'name'=>'required',
-        //     'image'=>'required'
-        // ]);
-        
-        $image_name = $request->image->getClientOriginalName();
-        $image_name = time().$image_name;
-        $path = 'images/main/categories';
-        $request->image->move($path,$image_name);
-
-        Category::create([
-            'name'=>$request->name,
-            'image'=> $path.'/'.$image_name
-        ]);
-        
+        $category = Category::create(Arr::only($request->all() ,['name']));
+        $category->storeFile($request->image);
         return redirect()->route('category.index');
     }
 
-    
     public function edit($id)
     {
         $category = Category::where('id',$id)->first();
         return view('Categories.edit')->with('category' , $category);
     }
 
-    public function update(Request $request, $id)
+    public function update(CategoryUpdateRequest $request, $id)
     {
-        $request->validate([
-            'name' => 'required'
-        ]);
         $category = Category::find($id);
-        $category->name = $request->name;
-        
-        if($request->image != null)
-        {
-            $image_path = public_path($category->image);
-            if(File::exists($image_path))
-            unlink($image_path);
-        
-            $image_name = $request->image->getClientOriginalName();
-            $image_name = time().$image_name;
-            $path = 'images/main/categories';
-            $request->image->move($path , $image_name);
-            
-            $category->image = $path.'/'.$image_name;
+        if(isset($request->image)){
+            $category->updateFile($request->image);
         }
-    
-        $category->save();
+        $category->update(Arr::only($request->all() ,['name']));
+
+        // $category->name = $request->name;
+        // if($request->image != null)
+        // {
+        //     $image_path = public_path($category->image);
+        //     if(File::exists($image_path))
+        //     unlink($image_path);
+        
+        //     $image_name = $request->image->getClientOriginalName();
+        //     $image_name = time().$image_name;
+        //     $path = 'images/main/categories';
+        //     $request->image->move($path , $image_name);
+            
+        //     $category->image = $path.'/'.$image_name;
+        // }
+        // $category->save();
     
         return redirect()->route('category.index'); 
     }
     
     public function delete($id)
     {
+        // $image_path = public_path($category->image);
+        // if(File::exists($image_path))
+        //     unlink($image_path);  
         $category = Category::find($id);
-        $image_path = public_path($category->image);
-        if(File::exists($image_path))
-            unlink($image_path);    
+        $category->deleteFiles('categories');  
         $category->delete();
         return redirect()->route('category.index');
     }
@@ -92,4 +81,5 @@ class CategoryController extends Controller
             ->paginate(10);
         return view('Categories.index')->with('categories',$categories);
     }
+    
 }

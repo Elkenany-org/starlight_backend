@@ -7,13 +7,18 @@
     <title>{{ config('app.name', 'DB starlight') }}</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script
+   
+    {{-- <script
       src="https://cdn.tiny.cloud/1/m8u9n55urqipgv1fuziq6h79fucsxc5k7e978yndxdqdxn6e/tinymce/6/tinymce.min.js"
       referrerpolicy="origin">
-    </script>
+    </script> --}}
+
     <!-- ========== All CSS files linkup ========= -->
     <link rel="stylesheet" href="{{ asset('css/lineicons.css') }}"/>
     @vite('resources/sass/app.scss')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.css" />
+    @stack('css')
+
 </head>
 <body dir="ltr">
 <!-- ======== sidebar-nav start =========== -->
@@ -122,7 +127,19 @@ margin-right: 0px;">
 <!-- ======== main-wrapper end =========== -->
 
 <!-- ========= All Javascript files linkup ======== -->
+
 @vite('resources/js/app.js')
 <script src="{{ asset('js/main.js') }}"></script>
+
+<script
+  src="https://code.jquery.com/jquery-3.7.1.min.js"
+  integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+  crossorigin="anonymous"></script>
+<script src="//cdn.ckeditor.com/4.17.1/full/ckeditor.js"></script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js" integrity="sha512-8QFTrG0oeOiyWo/VM9Y8kgxdlCryqhIxVeRpWSezdRRAvarxVtwLnGroJgnVW9/XBRduxO/z1GblzPrMQoeuew==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+@include('vendor.ckeditor')
+@stack('js')
+
 </body>
 </html>

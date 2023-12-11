@@ -1,5 +1,14 @@
 @extends('layouts.app')
 
+@push('css')
+    <style>
+        .dropify-render img{
+            max-height: 100%  !important;
+            transform: translate(0, 0%) !important;
+        }
+    </style>
+@endpush
+
 @section('content')
 
 <div class="card-styles">
@@ -28,11 +37,12 @@
                     <br>
                     <br>
                     <div class="d-inline-block input-style-1">
-                        <img src="{{$category->image_url}}" alt="error" style="width: 200px">
+                        {{-- <img src="{{$category->image_url}}" alt="error" style="width: 200px">
                         <br>
                         <br>
                         <label for="image">Image</label>
-                        <input type="file" class="file" name="image">
+                        <input type="file" class="file" name="image"> --}}
+                        <input type="file" class="main_image" name="image" data-default-file="{{$category->image_url}}" data-height="200" accept="image/*" />
                     </div>
                         
                     </div>
@@ -46,6 +56,11 @@
         </div>
     </form> 
         
-    @endsection
-    
 </div>                      
+@endsection
+
+@push('js')
+    <script>
+        $('.main_image').dropify();
+    </script>
+@endpush

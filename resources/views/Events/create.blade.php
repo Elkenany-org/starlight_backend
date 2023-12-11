@@ -36,10 +36,12 @@
                 </div>
               </div>
               
+
+
               <div class="col-12">
                 <div class="input-style-1">
                   <label>Description</label>
-                  <textarea name="description" rows="5" oninput="countCharacters(this,3)">{{old('description')}}</textarea>
+                  <textarea name="description" id="en" class="full-editor">{!! old('description') !!}</textarea>
                   <div><span id="3"></span></div>
                 </div>
               </div>
@@ -69,7 +71,9 @@
               <div class="col-12 d-flex justify-content-center align-items-center">
                 <h1 class="font-weight-bold" style="color: #0d6efd;">Social Media Data</h1>
               </div>
+
               <br><br>
+
               <div class="col-12">
                 <div class="input-style-1">
                   <label>Social title</label>
@@ -78,6 +82,7 @@
                   <div><span id="5"></span></div>
                 </div>
               </div>
+
               <div class="col-12">
                 <div class="input-style-1">
                   <label>Social description</label>
@@ -86,6 +91,7 @@
                   <div><span id="6"></span></div>
                 </div>
               </div>
+
               <div class="col-12">
                 <div class="input-style-1">
                   <label>Social image</label>
@@ -93,6 +99,7 @@
                   <div><span id="7"></span></div>
                 </div>
               </div>
+
               <div class="col-12">
                 <div class="input-style-1">
                   <label>Social alt_text</label>
@@ -146,29 +153,34 @@
 
 </div>
 
+@endsection
+
+@push('js')
+
     <script>
-      tinymce.init({
-        selector: "#textarea1",
-        directionality: 'rtl',
-        plugins:
-          "anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss",
-        toolbar:
-          "undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat",
-        tinycomments_mode: "embedded",
-        tinycomments_author: "Author name",
-        mergetags_list: [
-          { value: "First.Name", title: "First Name" },
-          { value: "Email", title: "Email" },
-        ],
-      });
+      // tinymce.init({
+      //   selector: "#textarea1",
+      //   directionality: 'rtl',
+      //   plugins:
+      //     "anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss",
+      //   toolbar:
+      //     "undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat",
+      //   tinycomments_mode: "embedded",
+      //   tinycomments_author: "Author name",
+      //   mergetags_list: [
+      //     { value: "First.Name", title: "First Name" },
+      //     { value: "Email", title: "Email" },
+      //   ],
+      // });
 
       function countCharacters(inputField , id) {
         var charCountElement = document.getElementById(id);
         charCountElement.innerText = inputField.value.length;
       }
-        
+
     </script>
-@endsection
+        
+@endpush
 
     
   
