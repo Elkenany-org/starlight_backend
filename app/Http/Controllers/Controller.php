@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Traits\ApiHelperTrait;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller as BaseController;
+use PHPUnit\Framework\MockObject\Api;
 
 class Controller extends BaseController
 {
-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+    use AuthorizesRequests, DispatchesJobs, ValidatesRequests , ApiHelperTrait;
 
     public function description_search($request , $column , $Model , $view , $return_data_name , $archive_flag , $page)
     {
@@ -18,7 +20,6 @@ class Controller extends BaseController
         
         if($description == "")
             return redirect()->route($view.'.'.$page)->with('search_flag',true)->with('search_flag2',false);
-        
         
         $words = explode(" ", $description);
         $flag = false;
@@ -56,9 +57,7 @@ class Controller extends BaseController
         }
         foreach ($indecies_of_words as &$row)
             $row = array_values($row);
-        
-        
-        
+
         if($index->count() == 0)
             return view($view.'.'.$page)->with($return_data_name , $index)->with('search_flag',false);
         
@@ -108,6 +107,7 @@ class Controller extends BaseController
         ->with('search_flag2' , false)
         ->with('indecies_of_words',$indecies_of_words);
     }
+    
     public function live_search($request , $column , $Model , $view , $return_data_name , $archive_flag , $page)
     {
         $description = $request->column;

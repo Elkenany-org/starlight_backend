@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Resources\CategoryResource;
 use App\Models\Category;
+use Illuminate\Http\Request;
 
 
 
@@ -12,13 +13,13 @@ class ApiCategoryController extends Controller
 {
     public function index()
     {
-        $categories = Category::all();
-        return response()->json($categories, 200);
+        $categories = CategoryResource::collection(Category::all());
+        return $this->returnJSON($categories);
     }
 
     public function show($id)
     {
-        $category = Category::where('id' , $id)->first();
-        return response()->json($category, 200);
+        $category = new CategoryResource(Category::where('id' , $id)->first());
+        return $this->returnJSON($category);
     }
 }

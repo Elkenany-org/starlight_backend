@@ -43,31 +43,11 @@ class CategoryController extends Controller
             $category->updateFile($request->image);
         }
         $category->update(Arr::only($request->all() ,['name']));
-
-        // $category->name = $request->name;
-        // if($request->image != null)
-        // {
-        //     $image_path = public_path($category->image);
-        //     if(File::exists($image_path))
-        //     unlink($image_path);
-        
-        //     $image_name = $request->image->getClientOriginalName();
-        //     $image_name = time().$image_name;
-        //     $path = 'images/main/categories';
-        //     $request->image->move($path , $image_name);
-            
-        //     $category->image = $path.'/'.$image_name;
-        // }
-        // $category->save();
-    
         return redirect()->route('category.index'); 
     }
     
     public function delete($id)
     {
-        // $image_path = public_path($category->image);
-        // if(File::exists($image_path))
-        //     unlink($image_path);  
         $category = Category::find($id);
         $category->deleteFiles('categories');  
         $category->delete();

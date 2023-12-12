@@ -16,13 +16,11 @@ class category extends Model implements HasMedia
     protected $hidden = ['image'];
     protected $fillable = ['name' , 'image'];
     
-    // public function getImageUrlAttribute()
-    // {
-    //     return url('/').'/'.$this->image;
-    // }
-
     public function getImageUrlAttribute()
     {
+        if($this->getFirstMediaUrl('categories') == null){
+            return url('/').'/'.$this->image;
+        }
         return $this->getFirstMediaUrl('categories');
     }
     
@@ -30,5 +28,8 @@ class category extends Model implements HasMedia
     {
         return $this->hasMany('App\Models\Product');
     }
-    
+
+    public function getCreatedAt(){
+       return $this->created_at->format('Y-m-d H:i');
+    }
 }
