@@ -3,18 +3,20 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\Product;
 use App\Models\Category;
+use App\Models\Product;
+use Illuminate\Http\Request;
 
 
 class ApiProductController extends Controller
 {
+    
     public function show($id)
     {
         $product = Product::where('id' , $id)->first();
         return response()->json($product, 200);
     }
+
     public function search(Request $request)
     {
         $categories = Category::all();
@@ -34,4 +36,5 @@ class ApiProductController extends Controller
 
         return response()->json(['categories'=>$categories , 'products'=>$products], 200);
     }
+    
 }

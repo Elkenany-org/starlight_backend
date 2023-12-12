@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\Content;
-use App\Models\Info;
 use App\Models\Category;
+use App\Models\Content;
 use App\Models\Event;
+use App\Models\Info;
 use App\Models\Product;
+use Illuminate\Http\Request;
 
 
 
@@ -49,6 +49,7 @@ class ApiContentController extends Controller
 
         return response()->json($data, 200);
     }
+    
     public function aboutus()
     {
         $contents = Content::where([['page_name','aboutus']])->get();

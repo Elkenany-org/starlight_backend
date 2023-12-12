@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\Product;
+use Illuminate\Http\Request;
 
 
 class ApiOrderController extends Controller
@@ -16,15 +16,16 @@ class ApiOrderController extends Controller
             'name' => 'required|string',
             'email' => 'required|string|email',
             'phone' => 'required|string',
-            'product_id' => 'required',
+            'product_id' => 'required|exists:products,id',
             'message' => 'required|string',
         ]);
+        
         $product = Product::where('id',$request->product_id)->first();
         
         $ret = Order::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'phone' => $request->phone,
+            'name'    => $request->name,
+            'email'   => $request->email,
+            'phone'   => $request->phone,
             'product' => $product->title,
             'message' => $request->message
         ]);
