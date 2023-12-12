@@ -39,5 +39,4 @@ class category extends Model implements HasMedia
     {
         return $this->provideFilter(CategoryFilter::class);
     }
-    
 }
