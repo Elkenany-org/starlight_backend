@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>{{ config('app.name', 'DB starlight') }}</title>
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
    
     {{-- <script
@@ -18,7 +17,6 @@
     @vite('resources/sass/app.scss')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.css" />
     @stack('css')
-
 </head>
 <body dir="ltr">
 <!-- ======== sidebar-nav start =========== -->
@@ -62,7 +60,6 @@ margin-right: 0px;">
                                     data-bs-toggle="dropdown" aria-expanded="false">
                             
                                 <div class="profile-info ms-2">
-                                    
                                     @if(!empty(Auth::user()->name))
                                         <div class="info">
                                             <h6 class="text-light fw-bold">{{ Auth::user()->name }}</h6>
@@ -71,6 +68,7 @@ margin-right: 0px;">
                                         <script>window.location.href = "{{ route('login') }}";</script>
                                     @endif
                                 </div>
+
                                 <i class="lni lni-chevron-down"></i>
                             </button>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profile">
@@ -140,6 +138,5 @@ margin-right: 0px;">
 
 @include('vendor.ckeditor')
 @stack('js')
-
 </body>
 </html>

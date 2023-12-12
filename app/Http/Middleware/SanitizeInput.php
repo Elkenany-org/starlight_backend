@@ -22,11 +22,11 @@ class SanitizeInput
         foreach ($inputData as $key => $value) {
             // $inputData[$key] = strip_tags($value);
             // $inputData[$key] = htmlspecialchars($value);
-            $inputData[$key] = preg_replace('/[^a-zA-Z0-9\s@.+-]/' , '', $value);
+            // $inputData[$key] = preg_replace('/[^a-zA-Z0-9\s@.+-]/' , '', $value);
         }
 
         // Replace the request data with sanitized data
-        $request->replace($inputData);
+        // $request->replace($inputData);
 
         return $next($request);
     }

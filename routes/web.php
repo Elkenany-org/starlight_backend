@@ -1,18 +1,19 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\InfoController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\ContentController;
-use App\Http\Controllers\ContactUsController;
-use App\Http\Controllers\OrderController;
-use App\Http\Controllers\EventController;
-use App\Http\Controllers\MetaDataPagesController;
-use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CkController;
+use App\Http\Controllers\ContactUsController;
+use App\Http\Controllers\ContentController;
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\InfoController;
+use App\Http\Controllers\MetaDataPagesController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Route;
 
 
 /*
@@ -52,7 +53,6 @@ Route::prefix('products')->group(function () {
     Route::get('/archive_title_search', [ProductController::class, 'archive_title_search'])->name('Products.archive_title_search');
     Route::post('/searchByDate', [ProductController::class, 'searchByDate'])->name('Products.searchByDate');
 });
-
 
 //news
 Route::prefix('events')->group(function () {
@@ -111,8 +111,6 @@ Route::prefix('orders')->group(function () {
     // Route::get('/archive_search' , [ContactUsController::class,'archive_search'])->name('contactus.archive_search'); 
 });
 
-
-
 //category
 Route::prefix('category')->group(function () {
     Route::get('/' , [CategoryController::class,'index'])->name('category.index');
@@ -124,12 +122,9 @@ Route::prefix('category')->group(function () {
     Route::get('/search' , [CategoryController::class,'search'])->name('category.search');
 });
 
-
-
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 
 Route::middleware('auth')->group(function () {
     Route::view('about', 'about')->name('about');
@@ -153,8 +148,10 @@ Route::prefix('metadata')->group(function () {
     Route::get('/delete/{id}' , [MetaDataPagesController::class,'delete'])->name('metadata.delete');
 });
 
-
 Route::prefix('content')->group(function () {
     Route::get('/content' , [ContentController::class,'content'])->name('content.show');
     Route::post('/update' , [ContentController::class,'update'])->name('content.update');
 });
+
+
+Route::post('upload-ck-images' , [CkController::class , 'uploadImage'])->name('upload-ck-images');

@@ -36,12 +36,10 @@
                 </div>
               </div>
               
-
-
               <div class="col-12">
                 <div class="input-style-1">
                   <label>Description</label>
-                  <textarea name="description" id="en" class="full-editor">{!! old('description') !!}</textarea>
+                  <textarea name="description" id="editor" class="full-editor">{!! old('description') !!}</textarea>
                   <div><span id="3"></span></div>
                 </div>
               </div>
@@ -52,6 +50,7 @@
                   <input type="file" class="file" id="file" name="image">
                 </div>
               </div>
+
               <div class="col-12">
                 <div class="input-style-1">
                   <label>Alt text</label>
@@ -59,6 +58,7 @@
                   <div dir="ltr"><span id="4"></span></div>
                 </div>
               </div>
+
               <div class="col-12">
                 <div class="input-style-1">
                   <label>Focus_keyword</label>
@@ -172,7 +172,12 @@
       //     { value: "Email", title: "Email" },
       //   ],
       // });
-
+    
+      // CKEDITOR.replace('editor',{
+      //   filebrowserUploadUrl: '{{ route("upload-ck-images" , ["_token" => csrf_token() ]) }}',
+      //   filebrowserUploadMethod: 'form'
+      // }); 
+   
       function countCharacters(inputField , id) {
         var charCountElement = document.getElementById(id);
         charCountElement.innerText = inputField.value.length;

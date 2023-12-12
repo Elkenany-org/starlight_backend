@@ -28,6 +28,8 @@
 
         $('.full-editor').each(function(e) {
             CKEDITOR.replace(this.id, {
+                filebrowserUploadUrl: '{{ route("upload-ck-images" , ["_token" => csrf_token() ]) }}',
+                filebrowserUploadMethod: 'form',
                 // removePlugins: 'image',
                 // Define the toolbar groups as it is a more accessible solution.
                 toolbarGroups: [
