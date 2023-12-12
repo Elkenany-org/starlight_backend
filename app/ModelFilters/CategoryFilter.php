@@ -3,14 +3,17 @@
 namespace App\ModelFilters;
 
 use EloquentFilter\ModelFilter;
+use Illuminate\Support\Str;
 
 class CategoryFilter extends ModelFilter
 {
-    /**
-    * Related Models that have ModelFilters as well as the method on the ModelFilter
-    * As [relationMethod => [input_key1, input_key2]].
-    *
-    * @var array
-    */
-    public $relations = [];
+    public function stringUpperToLower(string $value): string
+    {
+        return Str::lower($value);
+    }
+
+    public function name($search)
+    {
+        return  $this->whereRaw("LOWER(name) LIKE ?", ["%{$this->stringUpperToLower($search)}%"]);
+    }
 }

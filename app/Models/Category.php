@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use App\ModelFilters\CategoryFilter;
 use App\Traits\HandleUploadFile;
+use EloquentFilter\Filterable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -11,7 +13,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 
 class category extends Model implements HasMedia
 {
-    use HasFactory , InteractsWithMedia , HandleUploadFile;
+    use HasFactory , InteractsWithMedia , HandleUploadFile , Filterable;
     protected $appends = ['image_url'];
     protected $hidden = ['image'];
     protected $fillable = ['name' , 'image'];
@@ -32,4 +34,10 @@ class category extends Model implements HasMedia
     public function getCreatedAt(){
        return $this->created_at->format('Y-m-d H:i');
     }
+
+    public function modelFilter()
+    {
+        return $this->provideFilter(CategoryFilter::class);
+    }
+    
 }

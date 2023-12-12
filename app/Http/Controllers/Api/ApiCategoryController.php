@@ -11,9 +11,9 @@ use Illuminate\Http\Request;
 
 class ApiCategoryController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $categories = CategoryResource::collection(Category::all());
+        $categories = CategoryResource::collection(Category::filter($request->all())->get());
         return $this->returnJSON($categories);
     }
 
