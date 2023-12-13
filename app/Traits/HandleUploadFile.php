@@ -34,10 +34,10 @@ trait HandleUploadFile
         }
     }
 
-    public function storeFile(?UploadedFile $image , $prefix =''): void
+    public function storeFile(?UploadedFile $image , $alt = 'start-light-photo',  $prefix =''): void
     {
         if (isset($image)) {
-            $this->addMedia($image)->toMediaCollection($this->getTable().$prefix);
+            $this->addMedia($image)->withCustomProperties(['alt' => $alt])->toMediaCollection($this->getTable().$prefix);
         }
     }
 

@@ -1,11 +1,17 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
+
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>{{ config('app.name', 'DB starlight') }}</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+                            integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" 
+                            crossorigin="anonymous" 
+                            referrerpolicy="no-referrer" />
    
     {{-- <script
       src="https://cdn.tiny.cloud/1/m8u9n55urqipgv1fuziq6h79fucsxc5k7e978yndxdqdxn6e/tinymce/6/tinymce.min.js"
@@ -17,8 +23,11 @@
     @vite('resources/sass/app.scss')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.css" />
     @stack('css')
+
 </head>
+
 <body dir="ltr">
+
 <!-- ======== sidebar-nav start =========== -->
 <aside class="sidebar-nav-wrapper" style="left: 0 !important; position: fixed !important;">
     <div class="navbar-logo">
@@ -34,8 +43,7 @@
 <!-- ======== sidebar-nav end =========== -->
 
 <!-- ======== main-wrapper start =========== -->
-<main class="main-wrapper" style="margin-left: 250px;
-margin-right: 0px;">
+<main class="main-wrapper" style="margin-left: 250px;margin-right: 0px;">
     <!-- ========== header start ========== -->
     <header class="header py-3 sticky-top">
         <div class="container-fluid">
@@ -71,6 +79,7 @@ margin-right: 0px;">
 
                                 <i class="lni lni-chevron-down"></i>
                             </button>
+
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profile">
                                 <li>
                                         <a class="fw-bold" href="{{ route('profile.show') }}"> <i class="lni lni-user pl-5 "></i>حسابي</a>
@@ -82,6 +91,7 @@ margin-right: 0px;">
                                     </form>
                                 </li>
                             </ul>
+
                         </div>
                         <!-- profile end -->
                     </div>
@@ -127,16 +137,18 @@ margin-right: 0px;">
 <!-- ========= All Javascript files linkup ======== -->
 
 @vite('resources/js/app.js')
-<script src="{{ asset('js/main.js') }}"></script>
 
+<script src="{{ asset('js/main.js') }}"></script>
 <script
   src="https://code.jquery.com/jquery-3.7.1.min.js"
   integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
   crossorigin="anonymous"></script>
+
 <script src="//cdn.ckeditor.com/4.17.1/full/ckeditor.js"></script> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js" integrity="sha512-8QFTrG0oeOiyWo/VM9Y8kgxdlCryqhIxVeRpWSezdRRAvarxVtwLnGroJgnVW9/XBRduxO/z1GblzPrMQoeuew==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 @include('vendor.ckeditor')
 @stack('js')
+
 </body>
 </html>

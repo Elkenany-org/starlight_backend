@@ -134,6 +134,7 @@
                 <h1 class="font-weight-bold" style="color: #0d6efd;">Meta Data</h1>
               </div>
               <br><br>
+
               <div class="col-12">
                 <div class="input-style-1">
                   <label for="meta_title" dir="ltr">Title_tag</label>
@@ -141,6 +142,7 @@
                   <div dir="ltr"><span id="7"></span></div>
                 </div>
               </div>
+
               <div class="col-12">
                 <div class="input-style-1">
                   <label for="meta_link" dir="ltr">Meta_link</label>
@@ -162,6 +164,7 @@
                     <input class="main-btn primary-btn btn-hover w-25 text-center" type="submit" value="Update">
                   </div>
               </div>
+              
               </div>
             </form> 
       </div>

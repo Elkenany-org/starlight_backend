@@ -44,8 +44,8 @@
                         <input type="file" class="file" name="image"> --}}
                         <input type="file" class="main_image" name="image" data-default-file="{{$category->image_url}}" data-height="200" accept="image/*" />
                     </div>
-                        
-                    </div>
+                        {{-- {{dd($category->seo->getFirstMediaUrl('meta_data_pages')) }} --}}
+                        {{-- {{ dd($category->seo->getUrl('meta_data_pages')->getCustomProperty('alt') ) }} --}}
                     <div class="col-12">
                         <div class="button-group d-flex justify-content-center flex-wrap">
                           <input class="main-btn primary-btn btn-hover w-25 text-center" type="submit" value="Update">

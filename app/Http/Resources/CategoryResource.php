@@ -6,6 +6,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class CategoryResource extends JsonResource
 {
+
     /**
      * Transform the resource into an array.
      *
@@ -18,7 +19,8 @@ class CategoryResource extends JsonResource
             'id'         => $this->id,
             'name'       => $this->name,
             'image_url'  => $this->image_url,
-            'created_at' => $this->getCreatedAt(),
+            // 'created_at' => $this->getCreatedAt(),
         ];
     }
+
 }

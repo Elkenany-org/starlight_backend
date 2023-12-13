@@ -35,8 +35,8 @@
                 <td>{{($category->created_at)->format('d/m/Y   h:i:s')}}</td>
                 <td>{{($category->updated_at)->format('d/m/Y   h:i:s')}}</td>
                 <td>
-                  <a class="btn btn-secondary ms-1 py-1" href="{{ route('category.edit', $category->id) }}">Edit</a> 
-                  <a class="btn btn-danger ms-1 py-1" href="{{ route('category.delete', $category->id) }}">Delete</a>  
+                  <a class="btn btn-warning btn-sm ms-1 py-1" href="{{ route('category.edit', $category->id) }}">Edit</a> 
+                  <a class="btn btn-danger btn-sm ms-1 py-1" href="{{ route('category.delete', $category->id) }}">Delete</a>  
                 </td>
               </tr>
                 

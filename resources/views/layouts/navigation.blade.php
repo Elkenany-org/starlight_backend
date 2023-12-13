@@ -140,7 +140,7 @@
     </li>
     @endif
 
-    <li class=" nav-item @if(request()->routeIs('metadata.index') || request()->routeIs('metadata.create')) active @else noneactive @endif nav-item-has-children">
+    {{-- <li class=" nav-item @if(request()->routeIs('metadata.index') || request()->routeIs('metadata.create')) active @else noneactive @endif nav-item-has-children">
         <a class="search collapsed" class="" data-bs-toggle="collapse" data-bs-target="#ddmenu_7"
            aria-controls="ddmenu_7" aria-expanded="true" aria-label="Toggle navigation">
             <span class="icon">
@@ -160,12 +160,14 @@
                 </a>
             </li>
         </ul>
-    </li>
-    <br>            
-    <div class="col-12 d-flex justify-content-center align-items-center">
-        <h5 class="font-weight-bold" style="color: #0d6efd;">Content</h5>
+    </li> <br> --}}
+
+    <div class="col-12 d-flex ms-2  mt-2">
+        <br />
+            <h5 class="font-weight-bold" style="color: #0d6efd;">Main Pages</h5>
+        <br />
     </div>
-    <br>
+
     <li class=" nav-item nav-item-has-children">
         <a class="search collapsed"  data-bs-toggle="collapse" data-bs-target="#ddmenu_8"
         aria-controls="ddmenu_8" aria-expanded="true" aria-label="Toggle navigation">
@@ -183,6 +185,7 @@
             </li>
         </ul>
     </li>
+
     <li class=" nav-item nav-item-has-children">
         <a class="search collapsed"  data-bs-toggle="collapse" data-bs-target="#ddmenu_9"
         aria-controls="ddmenu_9" aria-expanded="true" aria-label="Toggle navigation">
@@ -230,8 +233,6 @@
             </li>
         </ul>
     </li>
-
-
 
 </ul>
 

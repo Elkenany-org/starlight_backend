@@ -39,4 +39,10 @@ class category extends Model implements HasMedia
     {
         return $this->provideFilter(CategoryFilter::class);
     }
+
+    public function seo()
+    {
+        return $this->morphOne(Meta_data_pages::class, 'model');
+    }
+    
 }

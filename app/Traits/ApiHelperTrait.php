@@ -10,7 +10,6 @@ trait ApiHelperTrait{
         $code = 200 , $message = '')
     { 
         return response()->json([
-            'code' => $code,
             'status' => $status,
             'message' => $message,
             'data' => $data,
@@ -18,7 +17,7 @@ trait ApiHelperTrait{
         ], $code);
     }
 
-      /**
+    /**
      * JSON response for APIs
      *
      * @param bool $status
@@ -26,44 +25,41 @@ trait ApiHelperTrait{
      * @param array $data
      * @param int $code
      * @return Response
-     */
+    */
     public function returnJSON($data = [], $status = true,
         $code = 200, $message = '')
     { 
         return response()->json([
-            'code' => $code,
             'status' => $status,
             'message' => $message,
             'data' => $data,
         ], $code);
     }
 
-     /**
+    /**
      * Return response for success opertation
      *
      * @return Response
-     */
+    */
     public function returnSuccess($message = 'Your request done successfully')
     {
         return response()->json([
-            'code' => 200,
             'status' => true,
             'message' => $message,
-        ], 200);
+        ], 200 );
     }
 
-     /**
+    /**
      * Return response for success opertation
      *
      * @return Response
-     */
+    */
     public function returnWrong($message = 'Your Request Is Invalid' ,  $code = JsonResponse::HTTP_BAD_REQUEST)
     {
         return response()->json([
-            'code' => $code,
-            'status' => false,
+            'status'  => false ,
             'message' => $message ,
-        ], $code);
+        ], $code );
     }
 
 }
