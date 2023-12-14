@@ -16,11 +16,11 @@ trait HandleUploadFile
      * @param UploadedFile|null $image
      * @return void
     */
-    public function updateFile($image, $prefix =''): void
+    public function updateFile($image, $alt = 'start-light-photo', $prefix =''): void
     {
         if (isset($image)) {
             $this->clearMediaCollection($this->getTable().$prefix);
-            $this->addMedia($image)->toMediaCollection($this->getTable().$prefix);
+            $this->addMedia($image)->withCustomProperties(['alt' => $alt])->toMediaCollection($this->getTable().$prefix);
         }
     }
 
@@ -34,7 +34,7 @@ trait HandleUploadFile
         }
     }
 
-    public function storeFile(?UploadedFile $image , $alt = 'start-light-photo',  $prefix =''): void
+    public function storeFile(?UploadedFile $image , $alt = 'start-light-photo', $prefix =''): void
     {
         if (isset($image)) {
             $this->addMedia($image)->withCustomProperties(['alt' => $alt])->toMediaCollection($this->getTable().$prefix);

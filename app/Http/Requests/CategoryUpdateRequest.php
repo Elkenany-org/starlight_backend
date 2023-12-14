@@ -6,6 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class CategoryUpdateRequest extends FormRequest
 {
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -24,8 +25,9 @@ class CategoryUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'required',
+            'name'=>'required|unique:categories,name,'. $this->category->id,
             'image'=>'nullable|mimes:png,jpg,jpeg,svg'
         ];
     }
+
 }

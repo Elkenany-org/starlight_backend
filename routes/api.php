@@ -39,7 +39,7 @@ Route::prefix('categories')->group(function () {
 
 //products
 Route::prefix('products')->group(function () {
-    Route::get('/' , [ApiProductController::class,'search']);
+    Route::get('/' , [ApiProductController::class,'index']);
     Route::get('/show/{id}' , [ApiProductController::class,'show']);
 });
 

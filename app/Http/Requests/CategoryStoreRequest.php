@@ -25,7 +25,7 @@ class CategoryStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'required',
+            'name'=>'required|unique:categories,name',
             'image'=>'required|mimes:png,jpg,jpeg,svg'
         ];
     }

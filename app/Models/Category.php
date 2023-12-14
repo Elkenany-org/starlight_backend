@@ -8,8 +8,10 @@ use EloquentFilter\Filterable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Str;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+
 
 class category extends Model implements HasMedia
 {
@@ -25,13 +27,27 @@ class category extends Model implements HasMedia
         }
         return $this->getFirstMediaUrl('categories');
     }
+
+    public function getImageObject()
+    {
+        if($this->image_url){
+            return [ 'url' =>  $this->image_url , 'alt' =>  $this->getFirstMedia('categories')?->getCustomProperty('alt') ];   
+        }
+        return null;
+    }
+
+    public function getAlt()
+    {
+        return $this->getFirstMedia('categories')?->getCustomProperty('alt');
+    }
     
     public function products()
     {
         return $this->hasMany('App\Models\Product');
     }
 
-    public function getCreatedAt(){
+    public function getCreatedAt()
+    {
        return $this->created_at->format('Y-m-d H:i');
     }
 
@@ -44,5 +60,24 @@ class category extends Model implements HasMedia
     {
         return $this->morphOne(Meta_data_pages::class, 'model');
     }
+
+    public function getSlug()
+    {
+        return  str_replace(' ' , '-' , $this->name);
+    }
     
+    public function getMetaTags()
+    {
+        return [
+            'title'              => $this->seo?->title,
+            'url'                => url($this->id) .'/'. str_replace(' ' , '-' , $this->name), 
+            'meta_link'          => $this->seo?->link,
+            'meta_description'   => $this->seo?->description,
+            'focus_keyword'      => $this->seo?->focus_keyword,
+            'social_title'       => $this->seo?->title_social,
+            'social_description' => $this->seo?->description_social,
+            'social_image'       => $this->seo?->getImage(),
+            'social_alt_image'   => $this->seo?->getAlt(),
+        ];
+    }
 }

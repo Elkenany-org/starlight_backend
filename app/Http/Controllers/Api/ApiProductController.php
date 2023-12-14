@@ -11,30 +11,28 @@ use Illuminate\Http\Request;
 class ApiProductController extends Controller
 {
     
+    public function index(Request $request)
+    {
+        // dd($request->all());
+        // $categories = Category::all();
+        // if($request->title == null && $request->category_id == null)
+        // {
+        //     $products = Product::all();
+        //     return response()->json(['categories'=>$categories , 'products'=>$products], 200);
+        // }    
+        // if($request->title == null && $request->category_id != null)
+        // {
+        //     $products = Product::where('category_id' , 'LIKE' , "%{$request->category_id}%")->get();
+        //     return response()->json(['categories'=>$categories , 'products'=>$products], 200);
+        // }
+        $products = Product::filter($request->all())->get();
+        return $this->returnJSON($products);
+    }
+    
     public function show($id)
     {
         $product = Product::where('id' , $id)->first();
         return response()->json($product, 200);
     }
 
-    public function search(Request $request)
-    {
-        $categories = Category::all();
-        if($request->title == null && $request->category_id == null)
-        {
-            $products = Product::all();
-            return response()->json(['categories'=>$categories , 'products'=>$products], 200);
-        }    
-        if($request->title == null && $request->category_id != null)
-        {
-            $products = Product::where('category_id' , 'LIKE' , "%{$request->category_id}%")->get();
-            return response()->json(['categories'=>$categories , 'products'=>$products], 200);
-        }
-        $products = Product::where('title', 'LIKE', "%{$request->title}%")
-            ->where('category_id' , 'LIKE' , "%{$request->category_id}%")
-            ->get();
-
-        return response()->json(['categories'=>$categories , 'products'=>$products], 200);
-    }
-    
 }

@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\ModelFilters\ProductFilter;
+use EloquentFilter\Filterable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -11,6 +13,8 @@ class Product extends Model
 {
     use SoftDeletes;
     use HasFactory;
+    use Filterable;
+    
     protected $hidden = ['images'];
     protected $appends = ['images_url'];
     protected $dates = ['deleted_at'];
@@ -26,6 +30,7 @@ class Product extends Model
     {
         return $this->belongsTo('App\Models\Category');
     }
+
     public function getImagesUrlAttribute()
     {
         $arr=[];
@@ -34,5 +39,10 @@ class Product extends Model
             array_push($arr , url('/').'/'.$image);
         }
         return $arr;
+    }
+
+    public function modelFilter()
+    {
+        return $this->provideFilter(ProductFilter::class);
     }
 }

@@ -6,8 +6,8 @@
   <div class="three mb-3 d-flex justify-content-between align-items-center">
     <h1 class="d-inline-block w-25 ">Categories</h1>
     
-    <form class="d-f justify-content-center align-items-center" id="search-form" action="{{route('category.search')}}" method="get">
-      <input class="mySearch" type="text" name="name" id="search-input">
+    <form class="d-f justify-content-center align-items-center" id="search-form" action="{{route('category.index')}}" method="get">
+      <input class="mySearch" type="text" name="name" value="{{ request()->name }}" id="search-input">
       <button class="btn btn-outline-secondary py-1" style="border-radius: 12px"  type="submit"><b>search</b></button>
     </form>
   </div>
@@ -24,9 +24,9 @@
             </tr>
           </thead>
           <tbody id="tbody">
-              @php
-                  $counter =1;
-              @endphp
+            @php
+                $counter =1;
+            @endphp
             @foreach ($categories as $category)
               <tr style="border-bottom: 1px double #5d657b">
                 <th scope="row" style="color: #2f80ed">{{$counter++}}</th>
@@ -39,7 +39,6 @@
                   <a class="btn btn-danger btn-sm ms-1 py-1" href="{{ route('category.delete', $category->id) }}">Delete</a>  
                 </td>
               </tr>
-                
             @endforeach
           </tbody>
     </table>  

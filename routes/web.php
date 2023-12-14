@@ -31,10 +31,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('home');
 });
+
 Route::get('/error', function () {
     return view('errors.404');
 })->name('error_page');
-
 
 //products
 Route::prefix('products')->group(function () {
@@ -118,9 +118,8 @@ Route::prefix('category')->group(function () {
     Route::get('/create' , [CategoryController::class, 'create'])->name('category.create');
     Route::post('/store' , [CategoryController::class, 'store'])->name('category.store');
     Route::get('/edit/{id}' , [CategoryController::class,'edit'])->name('category.edit');
-    Route::post('/update/{id}' , [CategoryController::class,'update'])->name('category.update');
+    Route::post('/update/{category}' , [CategoryController::class,'update'])->name('category.update');
     Route::get('/delete/{id}' , [CategoryController::class,'delete'])->name('category.delete');
-    Route::get('/search' , [CategoryController::class,'search'])->name('category.search');
 });
 
 Auth::routes();
@@ -153,6 +152,5 @@ Route::prefix('content')->group(function () {
     Route::get('/content' , [ContentController::class,'content'])->name('content.show');
     Route::post('/update' , [ContentController::class,'update'])->name('content.update');
 });
-
 
 Route::post('upload-ck-images' , [CkController::class , 'uploadImage'])->name('upload-ck-images');

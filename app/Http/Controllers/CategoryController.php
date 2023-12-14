@@ -13,9 +13,9 @@ use Illuminate\Support\Arr;
 class CategoryController extends Controller
 {
     
-    public function index()
+    public function index(Request $request)
     {
-        $categories = Category::latest()->paginate(10);
+        $categories = Category::filter($request->all())->latest()->paginate(10);
         return view('Categories.index')->with('categories',$categories);
     }
     
@@ -27,11 +27,11 @@ class CategoryController extends Controller
     public function store(CategoryStoreRequest $request)
     {
         $category = Category::create(Arr::only($request->all() ,['name']));
-        $category->storeFile($request->image);
+        $category->storeFile($request->image , $request->alt_text);
         
-        //handle meta tag for this category
+        //handle store meta tag for this category
         $meta = Meta_data_pages::create(
-            Arr::except($request->all() ,['name' , 'image' , 'social_image' , 'social_alt_text'])
+            Arr::except($request->all() ,['name' , 'image' , 'social_image' , 'social_alt_text' , 'alt_text'])
             + ['model_type' => Category::class , 'model_id' => $category->id] 
             );
         $meta->storeFile($request->social_image , $request->social_alt_text);
@@ -44,13 +44,18 @@ class CategoryController extends Controller
         return view('Categories.edit')->with('category' , $category);
     }
 
-    public function update(CategoryUpdateRequest $request, $id)
+    public function update(CategoryUpdateRequest $request, Category $category)
     {
-        $category = Category::find($id);
         if(isset($request->image)){
-            $category->updateFile($request->image);
+            $category->updateFile($request->image ,  $request->alt_text);
         }
         $category->update(Arr::only($request->all() ,['name']));
+        
+        //handle update meta tag for this category
+        $category->seo()->update(Arr::except($request->all() ,['_token','name' , 'image' , 'social_image' , 'social_alt_text' ,  'alt_text']));
+        if(isset($request->social_image)){
+            $category->seo->updateFile($request->social_image , $request->social_alt_text);
+        }
         return redirect()->route('category.index'); 
     }
     
@@ -60,14 +65,6 @@ class CategoryController extends Controller
         $category->deleteFiles('categories');  
         $category->delete();
         return redirect()->route('category.index');
-    }
-
-    public function search(Request $request)
-    {
-        $name = $request->name;
-        $categories = Category::where('name', 'LIKE', '%'.$name.'%')
-            ->paginate(10);
-        return view('Categories.index')->with('categories',$categories);
     }
     
 }

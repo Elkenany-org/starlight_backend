@@ -15,11 +15,8 @@ return new class extends Migration
     public function up()
     {
         Schema::table('meta_data_pages', function (Blueprint $table) {
-            $table->after('description_social',function($table){
-                $table->unsignedBigInteger('model_id')->nullable();
-                $table->string('model_type')->nullable();
-                $table->string('is_page')->default(0)->comment("[ 0 => model , 1 => page]");
-                $table->string('page_name')->nullable();
+            $table->after('page_name',function($table){
+                $table->text('focus_keyword')->nullable();
            });
         });
     }

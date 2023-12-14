@@ -21,6 +21,4 @@ class Content extends Model
     {
         return url('/').'/'.$this->image;
     }
-
-
 }
