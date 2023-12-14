@@ -46,6 +46,7 @@
             </li>
         </ul>
     </li>
+
     <li class=" nav-item @if(request()->routeIs('Events.index') || request()->routeIs('Events.archive')) active @else noneactive @endif nav-item-has-children">
         <a class="search collapsed" class="" data-bs-toggle="collapse" data-bs-target="#ddmenu_3" aria-controls="ddmenu_3" aria-expanded="true" aria-label="Toggle navigation">
             <span class="icon">
@@ -68,7 +69,6 @@
             </li>
         </ul>
     </li>
-
 
     <li class=" nav-item @if(request()->routeIs('info.index') || request()->routeIs('info.archive')) active @else noneactive @endif nav-item-has-children">
         <a class="search collapsed" data-bs-toggle="collapse" data-bs-target="#ddmenu_5" aria-controls="ddmenu_5" aria-expanded="true" aria-label="Toggle navigation">
@@ -93,7 +93,6 @@
         </ul>
     </li>
 
-
     <li class="nav-item @if(request()->routeIs('orders.index') || request()->routeIs('orders.archive')) active @endif">
         <a class="search " href="{{route('orders.index')}}">
             <span class="icon">
@@ -102,6 +101,7 @@
             <span class="text">Orders</span>
         </a>
     </li>
+
     <li class="nav-item @if(request()->routeIs('contactus.index') || request()->routeIs('contactus.archive')) active @endif">
         <a class="search " href="{{route('contactus.index')}}">
             <span class="icon">
@@ -110,6 +110,7 @@
             <span class="text">Messages</span>
         </a>
     </li>
+
     @if (Auth::check() && Auth::user()->role == 'admin')
     <li class=" nav-item @if(request()->routeIs('users.index') || request()->routeIs('register_form')) active @else noneactive @endif nav-item-has-children">
         <a class="search collapsed" data-bs-toggle="collapse" data-bs-target="#ddmenu_6" aria-controls="ddmenu_6" aria-expanded="true" aria-label="Toggle navigation">
@@ -292,6 +293,7 @@
 
     </ul>
 </li>
+
 </ul>
 
 <script>
@@ -307,5 +309,4 @@
             }
         }
     }
-
 </script>
