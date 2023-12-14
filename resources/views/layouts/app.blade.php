@@ -2,7 +2,6 @@
 <html lang="ar" dir="rtl">
 
 <head>
-
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -23,7 +22,6 @@
     @vite('resources/sass/app.scss')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.css" />
     @stack('css')
-
 </head>
 
 <body dir="ltr">
@@ -39,6 +37,7 @@
         @include('layouts.navigation')
     </nav>
 </aside>
+
 <div class="overlay"></div>
 <!-- ======== sidebar-nav end =========== -->
 
