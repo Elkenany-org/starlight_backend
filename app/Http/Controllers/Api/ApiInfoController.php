@@ -3,24 +3,24 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Resources\InfoResource;
 use App\Models\Info;
+use Illuminate\Http\Request;
 
 
 class ApiInfoController extends Controller
 {
+    
     public function index()
     {
-        $all_info = Info::get();
-        foreach($all_info as $info){
-            $data[$info->type] = $info->description;
-        }
-        return response()->json($data, 200);
+        $infos = InfoResource::collection(Info::get());
+        return $this->returnJSON($infos);
     }
 
     public function show(Request $request)
     {
-        $info = Info::where('type' , $request->type)->first();
-        return response()->json($info, 200);
+        $info = new InfoResource(Info::where('type' , $request->type)->first());
+        return $this->returnJSON($info);
     }
+    
 }

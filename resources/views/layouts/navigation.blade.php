@@ -1,4 +1,5 @@
 <input type="text" class="mySearch mx-auto d-block" id="mySearch" onkeyup="search(this.value)" placeholder="Search" title="Type in a category">
+
 <ul>
 
     <li class=" nav-item @if(request()->routeIs('Products.index') || request()->routeIs('Products.archive')) active @else noneactive @endif nav-item-has-children">
@@ -136,7 +137,7 @@
     </li>
     @endif
 
-    {{-- <li class=" nav-item @if(request()->routeIs('metadata.index') || request()->routeIs('metadata.create')) active @else noneactive @endif nav-item-has-children">
+{{-- <li class=" nav-item @if(request()->routeIs('metadata.index') || request()->routeIs('metadata.create')) active @else noneactive @endif nav-item-has-children">
         <a class="search collapsed" class="" data-bs-toggle="collapse" data-bs-target="#ddmenu_7"
            aria-controls="ddmenu_7" aria-expanded="true" aria-label="Toggle navigation">
             <span class="icon">
@@ -173,7 +174,7 @@
     </a>
     <ul id="ddmenu_8" class="dropdown-nav collapse">
         <li>
-            <a href="">
+            <a href="{{ route('content.seo.show', ['type' => 'home']) }}">
                 <div class="ico w-fit"><i class="fa-solid fa-page m-0" style="font-size: 14px"></i></div>
                 Seo
             </a>
@@ -196,7 +197,7 @@
     </a>
     <ul id="ddmenu_9" class="dropdown-nav collapse">
         <li>
-            <a href="">
+            <a href="{{ route('content.seo.show', ['type' => 'about']) }}">
                 <div class="ico w-fit"><i class="fa-solid fa-page m-0" style="font-size: 14px"></i></div>
                 Seo
             </a>
@@ -249,7 +250,7 @@
     </a>
     <ul id="ddmenu_products" class="dropdown-nav collapse">
         <li>
-            <a href="">
+             <a href="{{ route('content.seo.show', ['type' => 'products']) }}">
                 <div class="ico w-fit"><i class="fa-solid fa-page m-0" style="font-size: 14px"></i></div>
                 Seo
             </a>
@@ -267,7 +268,7 @@
     </a>
     <ul id="ddmenu_events" class="dropdown-nav collapse">
         <li>
-            <a href="">
+            <a href="{{ route('content.seo.show', ['type' => 'events']) }}">
                 <div class="ico w-fit"><i class="fa-solid fa-page m-0" style="font-size: 14px"></i></div>
                 Seo
             </a>
@@ -285,7 +286,7 @@
     </a>
     <ul id="ddmenu_contact" class="dropdown-nav collapse">
         <li>
-            <a href="">
+             <a href="{{ route('content.seo.show', ['type' => 'contact']) }}">
                 <div class="ico w-fit"><i class="fa-solid fa-page m-0" style="font-size: 14px"></i></div>
                 Seo
             </a>

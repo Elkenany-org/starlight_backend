@@ -41,6 +41,7 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $category = Category::where('id',$id)->first();
+        Meta_data_pages::firstOrCreate(['model_type' => Category::class , 'model_id' => $category->id ] ,['model_type' => Category::class , 'model_id' => $category->id ]);
         return view('Categories.edit')->with('category' , $category);
     }
 

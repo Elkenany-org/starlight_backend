@@ -20,4 +20,5 @@ class Order extends Model
         'message',
         'product'
     ];
+    
 }

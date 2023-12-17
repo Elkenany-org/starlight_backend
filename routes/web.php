@@ -1,7 +1,5 @@
 <?php
 
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CkController;
 use App\Http\Controllers\ContactUsController;
@@ -15,7 +13,6 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -151,6 +148,9 @@ Route::prefix('metadata')->group(function () {
 Route::prefix('content')->group(function () {
     Route::get('/content' , [ContentController::class,'content'])->name('content.show');
     Route::post('/update' , [ContentController::class,'update'])->name('content.update');
+
+    Route::get('/seo/{type}' , [ContentController::class,'contentSeo'])->name('content.seo.show');
+    Route::post('/seo/update' , [ContentController::class,'updateSeo'])->name('content.seo.update');
 });
 
 Route::post('upload-ck-images' , [CkController::class , 'uploadImage'])->name('upload-ck-images');

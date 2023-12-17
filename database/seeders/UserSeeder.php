@@ -2,18 +2,18 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Support\Facades\Hash;
+use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
-class UserTableData extends Seeder
+class UserSeeder extends Seeder
 {
     public function run()
     {
-        User::insert([
-            'name' => 'marwan',
-            'email' => 'marwanmohamed7887@gmail.com',
+        User::firstOrCreate([
+            'name' => 'ahmed',
+            'email' => 'ahmedmahfouz@gmail.com',
             'password' => Hash::make(12345678),
             'role' => 'admin'
         ]);

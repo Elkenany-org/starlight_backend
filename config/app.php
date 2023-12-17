@@ -185,11 +185,13 @@ return [
 
         /*
          * Package Service Providers...
-         */
-        EloquentFilter\ServiceProvider::class,
+        */
+            EloquentFilter\ServiceProvider::class,
+            Spatie\Permission\PermissionServiceProvider::class,
         /*
          * Application Service Providers...
-         */
+        */
+
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,

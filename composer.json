@@ -12,6 +12,7 @@
         "laravel/tinker": "^2.7",
         "laravel/ui": "^4.0",
         "spatie/laravel-medialibrary": "*",
+        "spatie/laravel-permission": "^6.2",
         "tucker-eric/eloquentfilter": "^3.2"
     },
     "require-dev": {

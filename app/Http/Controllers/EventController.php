@@ -183,7 +183,6 @@ class EventController extends Controller
     //     return $this->description_search($request , 'title' , new Article() , 'Articles' , 'articles',true,'archive');
     // }
 
-
 }
 
     

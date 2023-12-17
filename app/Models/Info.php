@@ -17,4 +17,5 @@ class Info extends Model
         'description',
     ];
     protected $dates = ['deleted_at'];
+    
 }

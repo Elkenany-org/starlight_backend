@@ -46,6 +46,7 @@ class ProductController extends Controller
         $images_name = [];
         $images_alt = [];
         $i = 0;
+        
         foreach($request['images'] as $image)
         {
             $image_name = $image->getClientOriginalName();
@@ -157,6 +158,7 @@ class ProductController extends Controller
         
         $product->social_title = $request->social_title;
         $product->social_description = $request->social_description;
+
         if($request->social_image != null)
         {
             $image_path = public_path($product->social_image);
@@ -169,14 +171,13 @@ class ProductController extends Controller
             $request->social_image->move($path , $social_image_name);
             $product->social_image = $path.'/'.$social_image_name;
         }
-        $product->social_alt_text = $request->social_alt_text;
         
+        $product->social_alt_text = $request->social_alt_text;
         $product->meta_title = $request->meta_title;
         $product->meta_link = $request->meta_link;
         $product->meta_description = $request->meta_description;
 
         $product->save();
-        
         return redirect()->route('Products.index');
     }
     

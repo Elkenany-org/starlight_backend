@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ProductResource extends JsonResource
+class EventResource extends JsonResource
 {
 
     /**
@@ -21,9 +21,8 @@ class ProductResource extends JsonResource
             'slug'              => $this->getSlug(),
             'short_description' => $this->shortdescription,
             'description'       => $this->description,
-            'images'            => $this->getImagesObjects(),
-            'category'          => $this->getCategoryObject(),
-            'meta_tags'         => $this->getMetaTags(),
+            'image'             => $this->getImageObject(),
+            'meta_tags'         => $this->getMetaTags(), 
         ];
     }
 

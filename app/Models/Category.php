@@ -80,4 +80,5 @@ class category extends Model implements HasMedia
             'social_alt_image'   => $this->seo?->getAlt(),
         ];
     }
+    
 }

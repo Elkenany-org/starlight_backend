@@ -40,9 +40,53 @@ class Product extends Model
         }
         return $arr;
     }
+    
+    public function getImagesObjects()
+    {
+        $arr=[];
+        foreach($this->images as $key => $image)
+        {  
+            $arr[] = [ 'url' => url('/').'/'.$image , 'alt' => $this-> $this->alt_text[$key] ?? 'star-light-photo' ];
+        }
+        return $arr;
+    }
+
+    public function getCategoryObject()
+    {
+        if($this->category){
+            return [ 'id' => $this->category->id , 'name' => $this->category->name ];
+        }
+        return null;
+    }
+
+    public function seo()
+    {
+        return $this->morphOne(Meta_data_pages::class, 'model');
+    }
+
+    public function getSlug()
+    {
+        return  str_replace(' ' , '-' , $this->category->name) .'/' . str_replace(' ' , '-' , $this->title) ;
+    }
+    
+    public function getMetaTags()
+    {
+        return [
+            'title'              => $this->seo?->title              ?? $this->title ,
+            'url'                => url($this->id) .'/'. str_replace(' ' , '-' , $this->category->name) .'/' . str_replace(' ' , '-' , $this->title) , 
+            'meta_link'          => $this->seo?->link               ?? $this->meta_link ,
+            'meta_description'   => $this->seo?->description        ?? $this->meta_description ,
+            'focus_keyword'      => $this->seo?->focus_keyword      ?? $this->focus_keyword ,
+            'social_title'       => $this->seo?->title_social       ?? $this->social_title ,
+            'social_description' => $this->seo?->description_social ?? $this->social_description ,
+            'social_image'       => $this->seo?->getImage()         ?? url($this->social_image),
+            'social_alt_image'   => $this->seo?->getAlt()           ?? $this->social_alt_text,
+        ];
+    }
 
     public function modelFilter()
     {
         return $this->provideFilter(ProductFilter::class);
     }
+    
 }

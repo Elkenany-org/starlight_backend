@@ -19,4 +19,5 @@ class ContactUs extends Model
         'message',
     ];
     protected $dates = ['deleted_at'];
+    
 }
