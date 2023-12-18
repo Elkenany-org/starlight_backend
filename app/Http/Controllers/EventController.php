@@ -10,6 +10,14 @@ use Illuminate\Http\Request;
 class EventController extends Controller
 {
     
+    public function __construct()
+    {
+        $this->middleware('permission:events.read', ['only' => ['index' , 'archive']]);
+        $this->middleware('permission:events.create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:events.edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:events.delete', ['only' => ['soft_delete','hardDelete']]);
+    }
+    
     public function index()
     {
         $events = Event::latest()->paginate(10);

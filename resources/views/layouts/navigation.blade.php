@@ -1,7 +1,8 @@
 <input type="text" class="mySearch mx-auto d-block" id="mySearch" onkeyup="search(this.value)" placeholder="Search" title="Type in a category">
 
 <ul>
-
+    
+    @can('products.read')
     <li class=" nav-item @if(request()->routeIs('Products.index') || request()->routeIs('Products.archive')) active @else noneactive @endif nav-item-has-children">
         <a class="search collapsed" data-bs-toggle="collapse" data-bs-target="#ddmenu_1" aria-controls="ddmenu_1" aria-expanded="true" aria-label="Toggle navigation">
             <span class="icon">
@@ -16,15 +17,19 @@
                     Show
                 </a>
             </li>
+            @can('products.create')
             <li>
                 <a href="{{ route('Products.create') }}">
                     <div class="ico w-fit"><i class="fa-solid fa-plus m-0" style="font-size: 14px"></i></div>
                     Add
                 </a>
             </li>
+            @endcan
         </ul>
     </li>
+    @endcan
 
+    @can('categories.read')
     <li class=" nav-item @if(request()->routeIs('category.index') || request()->routeIs('category.archive')) active @else noneactive @endif nav-item-has-children">
         <a class="search collapsed" class="" data-bs-toggle="collapse" data-bs-target="#ddmenu_2" aria-controls="ddmenu_2" aria-expanded="true" aria-label="Toggle navigation">
             <span class="icon">
@@ -39,15 +44,20 @@
                     Show
                 </a>
             </li>
+
+            @can('categories.create')
             <li>
                 <a href="{{ route('category.create') }}">
                     <div class="ico w-fit"><i class="fa-solid fa-plus m-0" style="font-size: 14px"></i></div>
                     Add
                 </a>
             </li>
+            @endcan
         </ul>
     </li>
+    @endcan
 
+    @can('events.read')
     <li class=" nav-item @if(request()->routeIs('Events.index') || request()->routeIs('Events.archive')) active @else noneactive @endif nav-item-has-children">
         <a class="search collapsed" class="" data-bs-toggle="collapse" data-bs-target="#ddmenu_3" aria-controls="ddmenu_3" aria-expanded="true" aria-label="Toggle navigation">
             <span class="icon">
@@ -62,15 +72,19 @@
                     Show
                 </a>
             </li>
+            @can('events.create')
             <li>
                 <a href="{{ route('Events.create') }}">
                     <div class="ico w-fit"><i class="fa-solid fa-plus m-0" style="font-size: 14px"></i></div>
                     Add
                 </a>
             </li>
+            @endcan
         </ul>
     </li>
+    @endcan
 
+    @can('infos.read')
     <li class=" nav-item @if(request()->routeIs('info.index') || request()->routeIs('info.archive')) active @else noneactive @endif nav-item-has-children">
         <a class="search collapsed" data-bs-toggle="collapse" data-bs-target="#ddmenu_5" aria-controls="ddmenu_5" aria-expanded="true" aria-label="Toggle navigation">
             <span class="icon">
@@ -85,15 +99,19 @@
                     Show
                 </a>
             </li>
+            @can('infos.create')
             <li>
                 <a href="{{ route('info.create') }}">
                     <div class="ico w-fit"><i class="fa-solid fa-plus m-0" style="font-size: 14px"></i></div>
                     Add
                 </a>
             </li>
+            @endcan
         </ul>
     </li>
+    @endcan
 
+    @can('orders.read')
     <li class="nav-item @if(request()->routeIs('orders.index') || request()->routeIs('orders.archive')) active @endif">
         <a class="search " href="{{route('orders.index')}}">
             <span class="icon">
@@ -102,7 +120,9 @@
             <span class="text">Orders</span>
         </a>
     </li>
+    @endcan
 
+    @can('contact.read')
     <li class="nav-item @if(request()->routeIs('contactus.index') || request()->routeIs('contactus.archive')) active @endif">
         <a class="search " href="{{route('contactus.index')}}">
             <span class="icon">
@@ -111,8 +131,9 @@
             <span class="text">Messages</span>
         </a>
     </li>
+    @endcan
 
-    @if (Auth::check() && Auth::user()->role == 'admin')
+    @can('users.read')
     <li class=" nav-item @if(request()->routeIs('users.index') || request()->routeIs('register_form')) active @else noneactive @endif nav-item-has-children">
         <a class="search collapsed" data-bs-toggle="collapse" data-bs-target="#ddmenu_6" aria-controls="ddmenu_6" aria-expanded="true" aria-label="Toggle navigation">
             <span class="icon">
@@ -127,27 +148,56 @@
                     Show
                 </a>
             </li>
+            @can('users.create')
             <li>
                 <a href="{{ route('register_form') }}">
                     <div class="ico w-fit"><i class="fa-solid fa-plus m-0" style="font-size: 14px"></i></div>
                     Add
                 </a>
             </li>
+            @endcan
         </ul>
     </li>
-    @endif
+    @endcan
 
-{{-- <li class=" nav-item @if(request()->routeIs('metadata.index') || request()->routeIs('metadata.create')) active @else noneactive @endif nav-item-has-children">
-        <a class="search collapsed" class="" data-bs-toggle="collapse" data-bs-target="#ddmenu_7"
-           aria-controls="ddmenu_7" aria-expanded="true" aria-label="Toggle navigation">
+    @can('roles.read')
+    <li class=" nav-item @if(request()->routeIs('roles.index')) active @else noneactive @endif nav-item-has-children">
+        <a class="search collapsed" data-bs-toggle="collapse" data-bs-target="#ddmenu_88" aria-controls="ddmenu_88" aria-expanded="true" aria-label="Toggle navigation">
             <span class="icon">
-                <i class="fa-solid fa-link"></i>
+                <i class="fa-solid fa-circle-info"></i>
             </span>
-            <span class="text">Meta data</span>
+            <span class="text">Roles</span>
         </a>
-        <ul id="ddmenu_7" class="dropdown-nav collapse" style="">
+        <ul id="ddmenu_88" class="dropdown-nav collapse">
             <li>
-                <a href="{{route('metadata.index')}}">
+                <a href="{{ route('roles.index') }}">
+                    <div class="ico w-fit"><i class="fa-solid fa-eye m-0" style="font-size: 14px"></i></div>
+                    Show
+                </a>
+            </li>
+            @can('roles.create')
+            <li>
+                <a href="{{ route('roles.create') }}">
+                    <div class="ico w-fit"><i class="fa-solid fa-plus m-0" style="font-size: 14px"></i></div>
+                    Add
+                </a>
+            </li>
+            @endcan
+        </ul>
+    </li>
+    @endcan
+
+    {{-- <li class=" nav-item @if(request()->routeIs('metadata.index') || request()->routeIs('metadata.create')) active @else noneactive @endif nav-item-has-children">
+            <a class="search collapsed" class="" data-bs-toggle="collapse" data-bs-target="#ddmenu_7"
+            aria-controls="ddmenu_7" aria-expanded="true" aria-label="Toggle navigation">
+                <span class="icon">
+                    <i class="fa-solid fa-link"></i>
+                </span>
+                <span class="text">Meta data</span>
+            </a>
+            <ul id="ddmenu_7" class="dropdown-nav collapse" style="">
+                <li>
+                    <a href="{{route('metadata.index')}}">
     <div class="ico w-fit"><i class="fa-solid fa-eye m-0" style="font-size: 14px"></i></div>
     Show
     </a>
@@ -159,6 +209,7 @@
 </ul>
 </li> <br> --}}
 
+@can('main_pages.read')
 <div class="col-12 d-flex ms-2  mt-2">
     <br />
     <h5 class="font-weight-bold" style="color: #0d6efd;">Main Pages</h5>
@@ -173,12 +224,14 @@
         <span class="text">Home</span>
     </a>
     <ul id="ddmenu_8" class="dropdown-nav collapse">
+        @can('main_pages.seo')
         <li>
             <a href="{{ route('content.seo.show', ['type' => 'home']) }}">
                 <div class="ico w-fit"><i class="fa-solid fa-page m-0" style="font-size: 14px"></i></div>
                 Seo
             </a>
         </li>
+        @endcan
         <li>
             <a href="{{ route('content.show' ,['page_name' => 'home', 'type' => 'header']) }}">
                 <div class="ico w-fit"><i class="fa-solid fa-page m-0" style="font-size: 14px"></i></div>
@@ -196,12 +249,14 @@
         <span class="text">About us</span>
     </a>
     <ul id="ddmenu_9" class="dropdown-nav collapse">
+        @can('main_pages.seo')
         <li>
             <a href="{{ route('content.seo.show', ['type' => 'about']) }}">
                 <div class="ico w-fit"><i class="fa-solid fa-page m-0" style="font-size: 14px"></i></div>
                 Seo
             </a>
         </li>
+        @endcan
         <li>
             <a href="{{ route('content.show' ,['page_name' => 'aboutus', 'type' => 'header']) }}">
                 <div class="ico w-fit"><i class="fa-solid fa-page m-0" style="font-size: 14px"></i></div>
@@ -241,6 +296,7 @@
     </ul>
 </li>
 
+@can('main_pages.seo')
 <li class=" nav-item nav-item-has-children">
     <a class="search collapsed" data-bs-toggle="collapse" data-bs-target="#ddmenu_products" aria-controls="ddmenu_products" aria-expanded="true" aria-label="Toggle navigation">
         <span class="icon">
@@ -250,15 +306,16 @@
     </a>
     <ul id="ddmenu_products" class="dropdown-nav collapse">
         <li>
-             <a href="{{ route('content.seo.show', ['type' => 'products']) }}">
+            <a href="{{ route('content.seo.show', ['type' => 'products']) }}">
                 <div class="ico w-fit"><i class="fa-solid fa-page m-0" style="font-size: 14px"></i></div>
                 Seo
             </a>
         </li>
-
     </ul>
 </li>
+@endcan
 
+@can('main_pages.seo')
 <li class=" nav-item nav-item-has-children">
     <a class="search collapsed" data-bs-toggle="collapse" data-bs-target="#ddmenu_events" aria-controls="ddmenu_events" aria-expanded="true" aria-label="Toggle navigation">
         <span class="icon">
@@ -273,10 +330,11 @@
                 Seo
             </a>
         </li>
-
     </ul>
 </li>
+@endcan
 
+@can('main_pages.seo')
 <li class=" nav-item nav-item-has-children">
     <a class="search collapsed" data-bs-toggle="collapse" data-bs-target="#ddmenu_contact" aria-controls="ddmenu_contact" aria-expanded="true" aria-label="Toggle navigation">
         <span class="icon">
@@ -286,14 +344,16 @@
     </a>
     <ul id="ddmenu_contact" class="dropdown-nav collapse">
         <li>
-             <a href="{{ route('content.seo.show', ['type' => 'contact']) }}">
+            <a href="{{ route('content.seo.show', ['type' => 'contact']) }}">
                 <div class="ico w-fit"><i class="fa-solid fa-page m-0" style="font-size: 14px"></i></div>
                 Seo
             </a>
         </li>
-
     </ul>
 </li>
+@endcan
+
+@endcan
 
 </ul>
 

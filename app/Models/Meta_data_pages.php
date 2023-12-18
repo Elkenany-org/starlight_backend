@@ -22,5 +22,4 @@ class Meta_data_pages extends Model implements HasMedia
     public function getAlt(){
         return $this->getFirstMedia('meta_data_pages')?->getCustomProperty('alt');
     }
-    
 }

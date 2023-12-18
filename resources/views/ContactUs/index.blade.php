@@ -38,20 +38,23 @@
               $counter =1;
           @endphp
           @foreach ($all_messages as $message)
-          <tr class="search2 " style="border-bottom: 1px double #5d657b">
-            <th scope="row" style="color: #2f80ed">{{$counter++}}</th>
-            <td>{{$message->first_name}}</td>
-            <td>{{$message->second_name}}</td>
-            <td>{{$message->created_at}}</td>
-            <td>
-              <a class="btn btn-secondary ms-1 py-1" href="{{ route('contactus.show', $message->id) }}">Show</a> 
-              <a class="btn btn-danger ms-1 py-1" href="{{ route('contactus.soft_delete', $message->id) }}">Delete</a>  
-            </td>
-            @if ($message->read == 0)
-              <td><i class="fa-solid fa-circle" style="color: #0d6efd;"></i></td>  
-            @endif
-          </tr>
-              
+            <tr class="search2 " style="border-bottom: 1px double #5d657b">
+              <th scope="row" style="color: #2f80ed">{{$counter++}}</th>
+              <td>{{$message->first_name}}</td>
+              <td>{{$message->second_name}}</td>
+              <td>{{$message->created_at}}</td>
+              <td>
+                @can('contact.show')
+                  <a class="btn btn-secondary ms-1 py-1" href="{{ route('contactus.show', $message->id) }}">Show</a> 
+                @endcan
+                @can('contact.delete')
+                  <a class="btn btn-danger ms-1 py-1" href="{{ route('contactus.soft_delete', $message->id) }}">Delete</a> 
+                @endcan 
+              </td>
+              @if ($message->read == 0)
+                <td><i class="fa-solid fa-circle" style="color: #0d6efd;"></i></td>  
+              @endif
+            </tr>
           @endforeach
         </tbody>
     </table>  

@@ -33,8 +33,13 @@
             <td>{{$order->product}}</td>
             <td>{{$order->created_at}}</td>
             <td>
-              <a class="btn btn-secondary ms-1 py-1" href="{{ route('orders.show', $order->id) }}">Show</a> 
-              <a class="btn btn-danger ms-1 py-1" href="{{ route('orders.soft_delete', $order->id) }}">Delete</a>  
+              @can('orders.show')
+                <a class="btn btn-secondary ms-1 py-1" href="{{ route('orders.show', $order->id) }}">Show</a> 
+              @endcan
+              
+              @can('orders.delete')
+                <a class="btn btn-danger ms-1 py-1" href="{{ route('orders.soft_delete', $order->id) }}">Delete</a>  
+              @endcan
             </td>
             @if ($order->read == 0)
               <td><i class="fa-solid fa-circle" style="color: #0d6efd;"></i></td>  

@@ -2,6 +2,7 @@
 <html lang="ar" dir="rtl">
 
 <head>
+
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -22,6 +23,7 @@
     @vite('resources/sass/app.scss')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.css" />
     @stack('css')
+
 </head>
 
 <body dir="ltr">
@@ -81,7 +83,7 @@
 
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profile">
                                 <li>
-                                        <a class="fw-bold" href="{{ route('profile.show') }}"> <i class="lni lni-user pl-5 "></i>حسابي</a>
+                                    <a class="fw-bold" href="{{ route('profile.show') }}"> <i class="lni lni-user pl-5 "></i>حسابي</a>
                                 </li>
                                 <li>
                                     <form method="POST" action="{{ route('logout') }}">
@@ -105,7 +107,6 @@
         <div class="container-fluid">
             @yield('content')
         </div>
-        <!-- end container -->
     </section>
     <!-- ========== section end ========== -->
 
@@ -138,6 +139,7 @@
 @vite('resources/js/app.js')
 
 <script src="{{ asset('js/main.js') }}"></script>
+
 <script
   src="https://code.jquery.com/jquery-3.7.1.min.js"
   integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="

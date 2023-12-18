@@ -41,8 +41,13 @@
                   <td>{{($product->created_at)->format('d/m/Y   h:i:s')}}</td>
                   <td>{{($product->updated_at)->format('d/m/Y   h:i:s')}}</td>
                   <td>
-                      <a class="btn btn-secondary ms-1 py-1" href="{{ route('Products.edit', $product->id) }}">Edit</a> 
-                      <a class="btn btn-danger ms-1 py-1" href="{{ route('Products.soft_delete', $product->id) }}">Delete</a>  
+                      @can('products.edit')
+                        <a class="btn btn-secondary ms-1 py-1" href="{{ route('Products.edit', $product->id) }}">Edit</a> 
+                      @endcan
+
+                      @can('products.delete')
+                        <a class="btn btn-danger ms-1 py-1" href="{{ route('Products.soft_delete', $product->id) }}">Delete</a>  
+                      @endcan
                   </td>
               </tr>
               @endforeach

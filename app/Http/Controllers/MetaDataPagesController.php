@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 class MetaDataPagesController extends Controller
 {
+    
     public function index()
     {
         $Meta_data = Meta_data_pages::paginate(10);
@@ -33,7 +34,6 @@ class MetaDataPagesController extends Controller
         return redirect()->route('metadata.index');
     }
 
-   
     public function edit($id)
     {
         $metadata = Meta_data_pages::where('id' , $id)->first();
@@ -64,4 +64,5 @@ class MetaDataPagesController extends Controller
         $metadata->delete();
         return redirect()->back(); 
     }
+
 }

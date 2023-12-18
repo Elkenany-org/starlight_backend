@@ -8,7 +8,6 @@ use Illuminate\Database\Seeder;
 
 class SeoSeeder extends Seeder
 {
-    
     /**
      * Run the database seeds.
      *
@@ -46,5 +45,4 @@ class SeoSeeder extends Seeder
             'page_name' => 'contact',
         ]);
     }
-
 }

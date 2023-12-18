@@ -9,17 +9,27 @@ use Illuminate\Http\Request;
 
 class InfoController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('permission:infos.read', ['only' => ['index' , 'archive']]);
+        $this->middleware('permission:infos.create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:infos.edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:infos.delete', ['only' => ['soft_delete','hardDelete']]);
+    }
     
     public function index()
     {
         $all_info = Info::latest()->paginate(10);
         return view('Info.index')->with('all_info' , $all_info);
     }
+
     public function archive()
     {
         $all_info = Info::latest()->onlyTrashed()->paginate(10);
         return view('Info.archive')->with('all_info',$all_info);
     }
+
     public function create()
     {
         $types = ['--none--' , 'address' , 'email' , 'phone'];
@@ -88,16 +98,19 @@ class InfoController extends Controller
         $info->forceDelete();
         return redirect()->back();
     }
+
     public function search(Request $request)
     {
         $description = $request->description;
         $all_info = Info::where('description', 'LIKE', '%'.$description.'%')->paginate(10);
         return view('Info.index')->with('all_info',$all_info);
     }
+
     public function archive_search(Request $request)
     {
         $description = $request->description;
         $all_info = Info::onlyTrashed()->where('description', 'LIKE', '%'.$description.'%')->paginate(10);
         return view('Info.archive')->with('all_info',$all_info);
     }
+
 }

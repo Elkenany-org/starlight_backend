@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 
 class CkController extends Controller
 {
-
-    public function uploadImage(Request $request){
+    public function uploadImage(Request $request)
+    {
         $originName = $request->file('upload')->getClientOriginalName();
 
         $fileName = pathinfo($originName, PATHINFO_FILENAME);
@@ -29,5 +29,4 @@ class CkController extends Controller
             echo "<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction($function_number, '', '$message');</script>";
         }
     }
-
 }

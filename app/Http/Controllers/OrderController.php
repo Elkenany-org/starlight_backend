@@ -7,6 +7,15 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('permission:orders.read', ['only' => ['index','archive','show']]);
+        $this->middleware('permission:orders.create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:orders.edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:orders.delete', ['only' => ['soft_delete','hard_delete']]);
+    }
+
     public function index()
     {
         $all_orders = Order::latest()->paginate(10);

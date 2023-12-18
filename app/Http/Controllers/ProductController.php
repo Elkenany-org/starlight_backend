@@ -10,6 +10,14 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+
+     public function __construct()
+    {
+        $this->middleware('permission:products.read', ['only' => ['index' , 'archive']]);
+        $this->middleware('permission:products.create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:products.edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:products.delete', ['only' => ['soft_delete', 'hard_delete']]);
+    }
     
     public function index()
     {

@@ -33,12 +33,17 @@
               <td>{{($info->updated_at)->format('d/m/Y   h:i:s')}}</td>
 
               <td>
-                <a class="btn btn-secondary ms-1 py-1" href="{{ route('info.edit', $info->id) }}">Edit</a> 
-                <a class="btn btn-danger ms-1 py-1" href="{{ route('info.soft_delete', $info->id) }}">Delete</a>  
+                @can('infos.edit')
+                  <a class="btn btn-secondary ms-1 py-1" href="{{ route('info.edit', $info->id) }}">Edit</a> 
+                @endcan
+
+                @can('infos.delete')
+                  <a class="btn btn-danger ms-1 py-1" href="{{ route('info.soft_delete', $info->id) }}">Delete</a> 
+                @endcan 
               </td>
+
             </tr>
             
-                
             @endforeach
           </tbody>
     </table>  

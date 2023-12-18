@@ -41,8 +41,13 @@
                   <td>{{($event->created_at)->format('d/m/Y   h:i:s')}}</td>
                   <td>{{($event->updated_at)->format('d/m/Y   h:i:s')}}</td>
                   <td>
-                      <a class="btn btn-secondary ms-1 py-1" href="{{ route('Events.edit', $event->id) }}">Edit</a> 
-                      <a class="btn btn-danger ms-1 py-1" href="{{ route('Events.soft_delete', $event->id) }}">Delete</a>  
+                      @can('events.edit')
+                        <a class="btn btn-secondary ms-1 py-1" href="{{ route('Events.edit', $event->id) }}">Edit</a> 
+                      @endcan
+
+                      @can('events.delete')
+                        <a class="btn btn-danger ms-1 py-1" href="{{ route('Events.soft_delete', $event->id) }}">Delete</a>  
+                      @endcan
                   </td>
               </tr>
               @endforeach

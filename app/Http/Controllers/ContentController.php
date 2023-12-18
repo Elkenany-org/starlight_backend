@@ -11,6 +11,15 @@ use Illuminate\Support\Arr;
 class ContentController extends Controller
 {
     
+    public function __construct()
+    {
+        // $this->middleware('permission:categories.read', ['only' => ['index']]);
+        // $this->middleware('permission:categories.create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:main_pages.edit', ['only' => ['content', 'update' , 'contentSeo' , 'updateSeo']]);
+        $this->middleware('permission:main_pages.seo', ['only' => ['contentSeo' , 'updateSeo']]);
+        // $this->middleware('permission:categories.delete', ['only' => ['delete']]);
+    }
+
     public function content(Request $request)
     {
         $content = Content::where([['page_name',$request->page_name],['type',$request->type]])->first();

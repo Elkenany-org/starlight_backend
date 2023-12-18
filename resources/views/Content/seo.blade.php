@@ -100,11 +100,14 @@
 
                     <input type="hidden" name="page" value="{{ $meta->page_name }}">
 
-                    <div class="col-12">
-                        <div class="button-group d-flex justify-content-center flex-wrap">
-                            <input class="main-btn primary-btn btn-hover w-25 text-center" type="submit" value="Update">
+                    @can('main_pages.edit')
+                        <div class="col-12">
+                            <div class="button-group d-flex justify-content-center flex-wrap">
+                                <input class="main-btn primary-btn btn-hover w-25 text-center" type="submit" value="Update">
+                            </div>
                         </div>
-                    </div>
+                    @endcan
+
                 </form>
 
             </div>

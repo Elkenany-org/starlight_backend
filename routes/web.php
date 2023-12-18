@@ -10,9 +10,11 @@ use App\Http\Controllers\MetaDataPagesController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -25,13 +27,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::get('/', function () {
     return view('home');
 });
 
+
 Route::get('/error', function () {
     return view('errors.404');
 })->name('error_page');
+
 
 //products
 Route::prefix('products')->group(function () {
@@ -52,6 +57,7 @@ Route::prefix('products')->group(function () {
     Route::post('/searchByDate', [ProductController::class, 'searchByDate'])->name('Products.searchByDate');
 });
 
+
 //news
 Route::prefix('events')->group(function () {
     Route::get('/' , [EventController::class,'index'])->name('Events.index');
@@ -70,6 +76,7 @@ Route::prefix('events')->group(function () {
     // Route::get('/archive_title_search', [EventController::class, 'archive_title_search'])->name('Events.archive_title_search');
 });
 
+
 //info
 Route::prefix('info')->group(function () {
     Route::get('/' , [InfoController::class,'index'])->name('info.index');
@@ -85,6 +92,7 @@ Route::prefix('info')->group(function () {
     Route::get('/archive_search' , [InfoController::class,'archive_search'])->name('info.archive_search');
 });
 
+
 //contactus
 Route::prefix('contactus')->group(function () {
     Route::get('/' , [ContactUsController::class,'index'])->name('contactus.index');
@@ -96,6 +104,7 @@ Route::prefix('contactus')->group(function () {
     Route::get('/search' , [ContactUsController::class,'search'])->name('contactus.search');
     Route::get('/archive_search' , [ContactUsController::class,'archive_search'])->name('contactus.archive_search'); 
 });
+
 
 //orders
 Route::prefix('orders')->group(function () {
@@ -109,6 +118,7 @@ Route::prefix('orders')->group(function () {
     // Route::get('/archive_search' , [ContactUsController::class,'archive_search'])->name('contactus.archive_search'); 
 });
 
+
 //category
 Route::prefix('category')->group(function () {
     Route::get('/' , [CategoryController::class,'index'])->name('category.index');
@@ -119,9 +129,23 @@ Route::prefix('category')->group(function () {
     Route::get('/delete/{id}' , [CategoryController::class,'delete'])->name('category.delete');
 });
 
+
+//roles
+Route::prefix('roles')->name('roles.')->group(function () {
+    Route::get('/' , [RoleController::class,'index'])->name('index');
+    Route::get('/create' , [RoleController::class, 'create'])->name('create');
+    Route::post('/store' , [RoleController::class, 'store'])->name('store');
+    Route::get('/edit/{role}' , [RoleController::class,'edit'])->name('edit');
+    Route::post('/update/{role}' , [RoleController::class,'update'])->name('update');
+    Route::get('/delete/{role}' , [RoleController::class,'delete'])->name('delete');
+});
+
+
 Auth::routes();
 
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 
 Route::middleware('auth')->group(function () {
     Route::view('about', 'about')->name('about');
@@ -129,11 +153,16 @@ Route::middleware('auth')->group(function () {
     Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
 });
 
+
 Route::group(['middleware' => 'auth.admin'], function () {
     Route::get('register_form', [UserController::class, 'register_form'])->name('register_form');
     Route::get('users', [UserController::class, 'index'])->name('users.index');
     Route::post('update_role', [UserController::class, 'update_role'])->name('update_role');
+    Route::get('/edit/{user}' , [UserController::class,'edit'])->name('users.edit');
+    Route::post('/update/{user}' , [UserController::class,'update'])->name('users.update');
+    Route::get('/delete/{user}' , [UserController::class,'delete'])->name('users.delete');
 });
+
 
 //meta data
 Route::prefix('metadata')->group(function () {
@@ -145,6 +174,7 @@ Route::prefix('metadata')->group(function () {
     Route::get('/delete/{id}' , [MetaDataPagesController::class,'delete'])->name('metadata.delete');
 });
 
+
 Route::prefix('content')->group(function () {
     Route::get('/content' , [ContentController::class,'content'])->name('content.show');
     Route::post('/update' , [ContentController::class,'update'])->name('content.update');
@@ -152,5 +182,6 @@ Route::prefix('content')->group(function () {
     Route::get('/seo/{type}' , [ContentController::class,'contentSeo'])->name('content.seo.show');
     Route::post('/seo/update' , [ContentController::class,'updateSeo'])->name('content.seo.update');
 });
+
 
 Route::post('upload-ck-images' , [CkController::class , 'uploadImage'])->name('upload-ck-images');

@@ -3,7 +3,6 @@
 @section('content')
 <head>
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
 </head>
     <!-- ========== title-wrapper start ========== -->
     <div class="title-wrapper pt-30">
@@ -30,7 +29,8 @@
                             <th class="pe-5"><h6>#</h6></th>
                             <th><h6>Name</h6></th>
                             <th><h6>Email</h6></th>
-                            <th><h6>Admin</h6></th>
+                            <th><h6>Role</h6></th>
+                            <th><h6>Action</h6></th>
                         </tr>
                         <!-- end table row-->
                         </thead>
@@ -47,16 +47,19 @@
                                     <p>{{ $user->email }}</p>
                                 </td>
                                 <td>
-                                    <input type="checkbox" name="myCheckbox" id="myCheckbox" value="{{$user->id}}" onchange="myCheckbox(this)"
-                                    @if ($user->role == 'admin')
-                                        checked 
-                                    @endif
-                                    @if (Auth::id() == $user->id)
-                                        @disabled(true)     
-                                    @endif
-                                    >
+                                    @foreach($user->roles as $role)
+                                        <p> {{ $role->name }} </p>  
+                                    @endforeach
                                 </td>
-                                
+                               <td>
+                                    @can('users.edit')
+                                        <a class="btn btn-secondary ms-1 py-1" href="{{ route('users.edit', $user->id) }}">Edit</a> 
+                                    @endcan
+                                    
+                                    @can('users.delete')
+                                        <a class="btn btn-danger ms-1 py-1" href="{{ route('users.delete', $user->id) }}">Delete</a>  
+                                    @endcan
+                               </td>
                             </tr>
                         @endforeach
                         <!-- end table row -->
@@ -77,6 +80,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <script>
+
     function myCheckbox(id){
         
         var id = id.value;
@@ -98,6 +102,7 @@
             }
         });
     }
+
 </script>
 
 
