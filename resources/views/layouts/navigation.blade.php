@@ -1,25 +1,25 @@
 <input type="text" class="mySearch mx-auto d-block" id="mySearch" onkeyup="search(this.value)" placeholder="Search" title="Type in a category">
 
 <ul>
-    
+ 
     @can('products.read')
-    <li class=" nav-item @if(request()->routeIs('Products.index') || request()->routeIs('Products.archive')) active @else noneactive @endif nav-item-has-children">
+    <li class=" nav-item nav-item-has-children">
         <a class="search collapsed" data-bs-toggle="collapse" data-bs-target="#ddmenu_1" aria-controls="ddmenu_1" aria-expanded="true" aria-label="Toggle navigation">
             <span class="icon">
                 <i class="fa-solid fa-newspaper fa-sm"></i>
             </span>
             <span class="text">Products</span>
         </a>
-        <ul id="ddmenu_1" class="dropdown-nav collapse">
+        <ul id="ddmenu_1" class="dropdown-nav collapse @if(request()->routeIs('Products.index') || request()->routeIs('Products.create')) show @endif">
             <li>
-                <a href="{{ route('Products.index') }}">
+                <a href="{{ route('Products.index') }}" class="@if(request()->routeIs('Products.index')) active @endif">
                     <div class="ico w-fit"><i class="fa-solid fa-eye m-0" style="font-size: 14px"></i></div>
                     Show
                 </a>
             </li>
             @can('products.create')
             <li>
-                <a href="{{ route('Products.create') }}">
+                <a href="{{ route('Products.create') }}" class="@if(request()->routeIs('Products.create')) active @endif">
                     <div class="ico w-fit"><i class="fa-solid fa-plus m-0" style="font-size: 14px"></i></div>
                     Add
                 </a>

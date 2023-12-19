@@ -30,7 +30,7 @@
             CKEDITOR.replace(this.id, {
                 filebrowserUploadUrl: '{{ route("upload-ck-images" , ["_token" => csrf_token() ]) }}',
                 filebrowserUploadMethod: 'form',
-                // removePlugins: 'image',
+
                 // Define the toolbar groups as it is a more accessible solution.
                 toolbarGroups: [
                         { name: 'document', groups: [ 'mode' ] },
@@ -40,7 +40,7 @@
                         '/',
                         { name: 'basicstyles', groups: [ 'basicstyles'] },
                         { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align' ] },
-                        // { name: 'links' },
+                        { name: 'links' },
                         { name: 'insert' },
                         '/',
                         { name: 'styles' },
@@ -49,7 +49,9 @@
                         // { name: 'others' },
                         // { name: 'about' }
                     ],
+                    
                 // Remove the redundant buttons from toolbar groups defined above.
+                removeDialogTabs : 'image:advanced;image:Link',
                 removeButtons: 'Underline,Strike,Subscript,Superscript,Anchor,Styles,Specialchar,PasteFromWord'
             });
         });
