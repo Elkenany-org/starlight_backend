@@ -69,7 +69,7 @@ class RoleController extends Controller
             $role->delete();
             Session()->flash('success', 'Role Deleted Successfully');   
         }else{
-            Session()->flash('success', 'Cannot  Deleted Role ');   
+            Session()->flash('error', 'Cannot  Deleted Role ');   
         }
        
         return redirect()->back();

@@ -6,18 +6,20 @@ use Illuminate\Http\Request;
 
 class CkController extends Controller
 {
+
     public function uploadImage(Request $request)
     {
         $originName = $request->file('upload')->getClientOriginalName();
 
-        $fileName = pathinfo($originName, PATHINFO_FILENAME);
+        $fileName   = pathinfo($originName, PATHINFO_FILENAME);
 
-        $extension = $request->file('upload')->getClientOriginalExtension();
+        $extension  = $request->file('upload')->getClientOriginalExtension();
 
-        $fileName = $fileName . '_' . time() . '.' . $extension;
+        $fileName   = $fileName . '_' . time() . '.' . $extension;
 
         $allowed_extension = array("jpg" , "jpeg" , "gif", "png", "svg");
-           $function_number = $_GET['CKEditorFuncNum'];
+        $function_number = $_GET['CKEditorFuncNum'];
+
         if(in_array($extension, $allowed_extension))
         {
             $request->file('upload')->move(storage_path('app/public'), $fileName);
@@ -29,4 +31,5 @@ class CkController extends Controller
             echo "<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction($function_number, '', '$message');</script>";
         }
     }
+
 }

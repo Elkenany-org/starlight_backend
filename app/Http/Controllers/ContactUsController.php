@@ -41,6 +41,7 @@ class ContactUsController extends Controller
     {
         $message = ContactUs::find($id);
         $message->delete();
+        Session()->flash('success', 'Message Archived Successfully'); 
         return redirect()->route('contactus.index');
     }
 
@@ -48,6 +49,7 @@ class ContactUsController extends Controller
     {
         $message = ContactUs::withTrashed()->find($id);
         $message->restore();
+        Session()->flash('success', 'Message Restore Successfully'); 
         return redirect()->back();
     }
 
@@ -55,6 +57,7 @@ class ContactUsController extends Controller
     {
         $message = ContactUs::onlyTrashed()->find($id);
         $message->forceDelete();
+        Session()->flash('success', 'Message Deleted Successfully'); 
         return redirect()->back();
     }
 

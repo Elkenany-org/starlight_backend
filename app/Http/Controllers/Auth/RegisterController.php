@@ -49,6 +49,7 @@ class RegisterController extends Controller
     {
         $this->validator($request->all())->validate();
         $this->create($request->all());
+        Session()->flash('success', 'User Added Successfully');
         return redirect()->route('users.index');
     }
     

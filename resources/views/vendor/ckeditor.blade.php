@@ -2,6 +2,7 @@
     $(function() {
         $('.mini-editor').each(function(e) {
             CKEDITOR.replace(this.id, {
+
                 // Define the toolbar groups as it is a more accessible solution.
                 toolbarGroups: [
                     {
@@ -21,6 +22,7 @@
                         , "groups": ['list']
                     }, 
                  ], 
+
                 // Remove the redundant buttons from toolbar groups defined above.
                 removeButtons: 'Underline,Strike,Subscript,Superscript,Anchor,Styles,Specialchar,PasteFromWord'
             });
@@ -28,8 +30,8 @@
 
         $('.full-editor').each(function(e) {
             CKEDITOR.replace(this.id, {
-                filebrowserUploadUrl: '{{ route("upload-ck-images" , ["_token" => csrf_token() ]) }}',
-                filebrowserUploadMethod: 'form',
+                filebrowserUploadUrl    : '{{ route("upload-ck-images" , ["_token" => csrf_token() ]) }}',
+                filebrowserUploadMethod : 'form',
 
                 // Define the toolbar groups as it is a more accessible solution.
                 toolbarGroups: [
@@ -49,10 +51,10 @@
                         // { name: 'others' },
                         // { name: 'about' }
                     ],
-                    
+
                 // Remove the redundant buttons from toolbar groups defined above.
                 removeDialogTabs : 'image:advanced;image:Link',
-                removeButtons: 'Underline,Strike,Subscript,Superscript,Anchor,Styles,Specialchar,PasteFromWord'
+                removeButtons : 'Underline,Strike,Subscript,Superscript,Anchor,Styles,Specialchar,PasteFromWord'
             });
         });
     });

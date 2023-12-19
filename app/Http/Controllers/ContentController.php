@@ -52,6 +52,7 @@ class ContentController extends Controller
         
         $content->save();
 
+        Session()->flash('success', 'Content Updated Successfully'); 
         return redirect()->route('home');
     }
 
@@ -69,6 +70,8 @@ class ContentController extends Controller
         if(isset($request->social_image)){
             $page->updateFile($request->social_image , $request->social_alt_text);
         }
+
+        Session()->flash('success', 'Seo Updated Successfully'); 
         return redirect()->back();
     }
     

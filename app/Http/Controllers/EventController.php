@@ -41,7 +41,6 @@ class EventController extends Controller
     
     public function store(Request $request)
     {
-        // dd($request->all());
         $this->validate($request , [
             'title'=> 'required',
             'shortdescription'=> 'required',
@@ -79,6 +78,7 @@ class EventController extends Controller
             'meta_link'=> $request->meta_link,
             'meta_description'=> $request->meta_description,
         ]);
+        Session()->flash('success', 'Event Added Successfully'); 
         return redirect()->route('Events.index');
     }
     
@@ -90,7 +90,6 @@ class EventController extends Controller
     
     public function update(Request $request, $id)
     {
-        dd($request->all());
         $request->validate([
             'title' => 'required',
             'shortdescription' => 'required',
@@ -142,7 +141,7 @@ class EventController extends Controller
         $event->meta_description = $request->meta_description;
 
         $event->save();
-        
+        Session()->flash('success', 'Event Updated Successfully'); 
         return redirect()->route('Events.index');
     }
     
@@ -150,6 +149,7 @@ class EventController extends Controller
     {
         $event = Event::find($id);    
         $event->delete();
+        Session()->flash('success', 'Event Archived Successfully'); 
         return redirect()->route('Events.index');
     }
     
@@ -157,6 +157,7 @@ class EventController extends Controller
     {
         $event = Event::withTrashed()->find($id);    
         $event->restore();
+        Session()->flash('success', 'Event Restored Successfully'); 
         return redirect()->route('Events.archive');
     }
     
@@ -171,6 +172,7 @@ class EventController extends Controller
             unlink($social_image_path);
         
         $event->forceDelete();
+        Session()->flash('success', 'Event Deleted Successfully'); 
         return redirect()->route('Events.archive'); 
     }
     
@@ -178,14 +180,17 @@ class EventController extends Controller
     // {
     //     return $this->description_search($request , 'description' , new Article() , 'Articles' , 'articles',false,'index');
     // }
+    
     // public function archive_search(Request $request)
     // {
     //     return $this->description_search($request , 'description' , new Article() , 'Articles' , 'articles',true,'archive');
     // }
+    
     // public function title_search(Request $request)
     // {
     //     return $this->description_search($request , 'title' , new Article() , 'Articles' , 'articles',false,'index');
     // }
+    
     // public function archive_title_search(Request $request)
     // {
     //     return $this->description_search($request , 'title' , new Article() , 'Articles' , 'articles',true,'archive');

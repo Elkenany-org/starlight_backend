@@ -64,14 +64,20 @@
                         </div>
                     </div>
 
-                    <!-- end col -->
+                    <div class="col-12">
+                        <div class="button-group d-flex justify-content-center flex-wrap">
+                            <input class="main-btn primary-btn btn-sm btn-hover w-25 text-center spinner-btn" type="submit" value="تعديل">
+                        </div>
+                    </div>
+
+                    {{-- <!-- end col -->
                     <div class="col-12">
                         <div class="button-group d-flex justify-content-center flex-wrap">
                             <button type="submit" class="main-btn primary-btn btn-hover w-100 text-center">
-                                اضافة
+                                تعديل
                             </button>
                         </div>
-                    </div>
+                    </div> --}}
 
                 </div>
                 <!-- end row -->

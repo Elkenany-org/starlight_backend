@@ -6,9 +6,9 @@ use App\Http\Requests\CategoryStoreRequest;
 use App\Http\Requests\CategoryUpdateRequest;
 use App\Models\Category;
 use App\Models\Meta_data_pages;
-use File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+
 
 class CategoryController extends Controller
 {
@@ -43,6 +43,8 @@ class CategoryController extends Controller
             + ['model_type' => Category::class , 'model_id' => $category->id] 
             );
         $meta->storeFile($request->social_image , $request->social_alt_text);
+
+        Session()->flash('success', 'Category Added Successfully'); 
         return redirect()->route('category.index');
     }
 
@@ -65,6 +67,8 @@ class CategoryController extends Controller
         if(isset($request->social_image)){
             $category->seo->updateFile($request->social_image , $request->social_alt_text);
         }
+
+        Session()->flash('success', 'Category Updated Successfully'); 
         return redirect()->route('category.index'); 
     }
     
@@ -73,6 +77,7 @@ class CategoryController extends Controller
         $category = Category::find($id);
         $category->deleteFiles('categories');  
         $category->delete();
+        Session()->flash('success', 'Category Deleted Successfully'); 
         return redirect()->route('category.index');
     }
     

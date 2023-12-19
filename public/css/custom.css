@@ -1,0 +1,4 @@
+.dropify-render img {
+    max-height: 100% !important;
+    transform: translate(0, 0%) !important;
+}

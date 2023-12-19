@@ -20,6 +20,7 @@
 
     <!-- ========== All CSS files linkup ========= -->
     <link rel="stylesheet" href="{{ asset('css/lineicons.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/custom.css') }}"/>
     @vite('resources/sass/app.scss')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.css" />
     @stack('css')
@@ -145,10 +146,13 @@
   integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
   crossorigin="anonymous"></script>
 
+<script src="{{ asset('js/sweetalert.js') }}"></script>
 <script src="//cdn.ckeditor.com/4.17.1/full/ckeditor.js"></script> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js" integrity="sha512-8QFTrG0oeOiyWo/VM9Y8kgxdlCryqhIxVeRpWSezdRRAvarxVtwLnGroJgnVW9/XBRduxO/z1GblzPrMQoeuew==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+@include('layouts.alert')
 @include('vendor.ckeditor')
+@include('layouts.loading_indicators')
 @stack('js')
 
 </body>

@@ -53,6 +53,7 @@ class InfoController extends Controller
                 'type' => $types[$request->type_index],
                 'description' => $request->description
             ]);
+            Session()->flash('success', 'Info Added Successfully'); 
             return redirect()->route('info.index');
         }
     }
@@ -74,7 +75,8 @@ class InfoController extends Controller
         $info->type = $request->type;
         $info->description = $request->description;
         $info->save();
-
+        
+        Session()->flash('success', 'Info Updated Successfully'); 
         return redirect()->route('info.index'); 
     }
 
@@ -82,6 +84,7 @@ class InfoController extends Controller
     {
         $info = Info::find($id);
         $info->delete();
+        Session()->flash('success', 'Info Archived Successfully'); 
         return redirect()->back();
     }
 
@@ -89,6 +92,7 @@ class InfoController extends Controller
     {
         $info = Info::withTrashed()->find($id);
         $info->restore();
+        Session()->flash('success', 'Info Restored Successfully'); 
         return redirect()->back();
     }
 
@@ -96,6 +100,7 @@ class InfoController extends Controller
     {
         $info = Info::onlyTrashed()->find($id);
         $info->forceDelete();
+        Session()->flash('success', 'Info Deleted Successfully'); 
         return redirect()->back();
     }
 

@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 class ProductController extends Controller
 {
 
-     public function __construct()
+    public function __construct()
     {
         $this->middleware('permission:products.read', ['only' => ['index' , 'archive']]);
         $this->middleware('permission:products.create', ['only' => ['create', 'store']]);
@@ -94,6 +94,7 @@ class ProductController extends Controller
             'meta_description'=> $request->meta_description,
         ]);
         
+        Session()->flash('success', 'Product Added Successfully'); 
         return redirect()->route('Products.index');
     }
     
@@ -186,6 +187,8 @@ class ProductController extends Controller
         $product->meta_description = $request->meta_description;
 
         $product->save();
+
+        Session()->flash('success', 'Product Updated Successfully'); 
         return redirect()->route('Products.index');
     }
     
@@ -193,6 +196,8 @@ class ProductController extends Controller
     {
         $product = Product::find($id);    
         $product->delete();
+
+        Session()->flash('success', 'Product Archived Successfully'); 
         return redirect()->route('Products.index');
     }
     
@@ -200,6 +205,8 @@ class ProductController extends Controller
     {
         $product = Product::withTrashed()->find($id);    
         $product->restore();
+
+        Session()->flash('success', 'Product Restored Successfully'); 
         return redirect()->route('Products.archive');
     }
     
@@ -217,24 +224,30 @@ class ProductController extends Controller
             unlink($social_image_path);
         
         $product->forceDelete();
+        Session()->flash('success', 'Product Deleted Successfully'); 
         return redirect()->route('Products.archive'); 
     }
+    
     public function search(Request $request)
     {
         return $this->live_search($request , 'description' , new Product() , 'Products' , 'products',false,'index');
     }
+    
     public function archive_search(Request $request)
     {
         $this->description_search($request , 'description' , new Product() , 'Products' , 'products',true,'archive');
     }
+    
     public function title_search(Request $request)
     {
         return $this->description_search($request , 'title' , new Product() , 'Products' , 'products',false,'index');
     }
+    
     public function archive_title_search(Request $request)
     {
         return $this->description_search($request , 'title' , new Product() , 'Products' , 'products',true,'archive');
     }
+    
     // public function searchByDate(Request $request)
     // {
     //     $date = $request->input('date');
@@ -244,7 +257,6 @@ class ProductController extends Controller
     //     return view('News.index')->with('news',$news)->with('search_flag',true)
     //         ->with('search_flag2' , true);
     // }
-
 }
 
     

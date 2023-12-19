@@ -74,19 +74,19 @@
                             <select name="role" class="form-control">
                                 <option value=""> --- </option>
                                 @foreach($roles as $role)
-                                    <option value="{{$role->name}}">{{ $role->name }}</option>
+                                <option value="{{$role->name}}">{{ $role->name }}</option>
                                 @endforeach
                             </select>
                         </div>
                     </div>
+                    
                     <!-- end col -->
                     <div class="col-12">
                         <div class="button-group d-flex justify-content-center flex-wrap">
-                            <button type="submit" class="main-btn primary-btn btn-hover w-100 text-center">
-                                اضافة
-                            </button>
+                            <input class="main-btn primary-btn btn-sm btn-hover w-25 text-center spinner-btn" type="submit" value="اضافة">
                         </div>
                     </div>
+
                 </div>
                 <!-- end row -->
             </form>

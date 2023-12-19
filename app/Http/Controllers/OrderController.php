@@ -43,6 +43,7 @@ class OrderController extends Controller
     {
         $order = Order::find($id);
         $order->delete();
+        Session()->flash('success', 'Order Archived Successfully'); 
         return redirect()->route('orders.index');
     }
 
@@ -50,6 +51,7 @@ class OrderController extends Controller
     {
         $order = Order::withTrashed()->find($id);
         $order->restore();
+        Session()->flash('success', 'Order Restored Successfully'); 
         return redirect()->back();
     }
 
@@ -57,18 +59,22 @@ class OrderController extends Controller
     {
         $order = Order::onlyTrashed()->find($id);
         $order->forceDelete();
+        Session()->flash('success', 'Order Deleted Successfully'); 
         return redirect()->back();
     }
+    
     // public function search(Request $request)
     // {
     //     $all_orders = Order::where('company_name', 'LIKE', '%'.$request->company_name.'%')
     //         ->where('first_name','LIKE','%'.$request->first_name.'%')->paginate(10);
     //     return view('Order.index')->with('all_orders',$all_orders);
     // }
+    
     // public function archive_search(Request $request)
     // {
     //     $all_orders = Order::onlyTrashed()->where('company_name', 'LIKE', '%'.$request->company_name.'%')
     //         ->where('first_name','LIKE','%'.$request->first_name.'%')->paginate(10);
     //     return view('Order.archive')->with('all_orders',$all_orders);
     // }
+    
 }
