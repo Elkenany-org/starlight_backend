@@ -37,10 +37,10 @@
             this.form.submit();
 
             // Set a timeout to revert the button back after 2 seconds
-            setTimeout(() => {
-                this.value = "Click me";
-                this.removeAttribute("disabled");
-            }, 2000);
+            // setTimeout(() => {
+            //     this.value = "Click me";
+            //     this.removeAttribute("disabled");
+            // }, 2000);
         }
     });
 </script>
