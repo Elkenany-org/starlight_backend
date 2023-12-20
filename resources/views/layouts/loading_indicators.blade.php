@@ -6,10 +6,18 @@
 
         for (let i = 0; i < this.form.elements.length; i++) {
             const element = this.form.elements[i];
-
+            element.classList.remove('error-border')
             if (element.required && element.value === "") {
                 element.focus();
+                
+                if(!element.checkValidity()){
+                    if(element.getAttribute('type') == 'file'){
+                        alert('upload image');
+                    }
+                    element.classList.add('error-border');
+                }
 
+                // element.setCustomValidity("This field is required");
                 // element.addEventListener("focus", function() {
                 //     this.setCustomValidity("This field is required");
                 // });
