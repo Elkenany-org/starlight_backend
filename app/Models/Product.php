@@ -66,7 +66,7 @@ class Product extends Model
 
     public function getSlug()
     {
-        return  str_replace(' ' , '-' , $this->category->name) .'/' . str_replace(' ' , '-' , $this->title) ;
+        return   str_replace(' ' , '-' , $this->title) ;
     }
     
     public function getMetaTags()
