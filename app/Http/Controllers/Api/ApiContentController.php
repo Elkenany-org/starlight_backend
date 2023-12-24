@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CategoryResource;
+use App\Http\Resources\ProductResource;
 use App\Models\Category;
 use App\Models\Content;
 use App\Models\Event;
@@ -30,16 +31,20 @@ class ApiContentController extends Controller
 
         foreach($categories as $category)
         {
-            $data['categories'][] = ['id'=>$category->id,'name' => $category->name ,'image' => $category->image_url];
+            $data['categories'][] = [
+                'id'    => $category->id,
+                'name'  => $category->name ,
+                'images' => [$category->getImageObject()],
+            ];
         }
         
         foreach($categories_products as $category)
         {
             $data['categories_products'][] = [
-                'id'=>$category->id,
-                'name' => $category->name ,
-                'image' => $category->image_url,
-                'products' => $category->products->take(4)
+                'id'       => $category->id,
+                'name'     => $category->name ,
+                'images'    => [$category->getImageObject()],
+                'products' => ProductResource::collection($category->products->take(4)), 
             ];
             // $products = Product::where('category_id',$category->id)->select('id','title','shortdescription','images')->limit(4)->get();
             // $data['categories_products']['products'][] = $category->products;
