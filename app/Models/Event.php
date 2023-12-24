@@ -32,6 +32,11 @@ class Event extends Model
         return null;
     }
 
+    public function getCreatedAt()
+    {
+       return $this->created_at->format('Y-m-d H:i');
+    }
+
     public function seo()
     {
         return $this->morphOne(Meta_data_pages::class, 'model');
@@ -56,6 +61,5 @@ class Event extends Model
             'social_alt_image'   => $this->seo?->getAlt()           ?? $this->social_alt_text,
         ];
     }
-
     
 }

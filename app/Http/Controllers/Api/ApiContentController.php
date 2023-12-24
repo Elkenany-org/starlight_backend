@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CategoryResource;
+use App\Http\Resources\EventResource;
 use App\Http\Resources\ProductResource;
 use App\Models\Category;
 use App\Models\Content;
@@ -32,8 +33,9 @@ class ApiContentController extends Controller
         foreach($categories as $category)
         {
             $data['categories'][] = [
-                'id'    => $category->id,
-                'name'  => $category->name ,
+                'id'     => $category->id,
+                'name'   => $category->name ,
+                'slug'   => $category->getSlug(),
                 'images' => [$category->getImageObject()],
             ];
         }
@@ -43,6 +45,7 @@ class ApiContentController extends Controller
             $data['categories_products'][] = [
                 'id'       => $category->id,
                 'name'     => $category->name ,
+                'slug'     => $category->getSlug() ,
                 'images'    => [$category->getImageObject()],
                 'products' => ProductResource::collection($category->products->take(4)), 
             ];
@@ -50,7 +53,7 @@ class ApiContentController extends Controller
             // $data['categories_products']['products'][] = $category->products;
         }
         
-        $data['events']    = $events;
+        $data['events']    = EventResource::collection($events);
         $data['meta_tags'] = $this->getMetaTags('home');
 
         return $this->returnJSON($data); 

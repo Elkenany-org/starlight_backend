@@ -23,6 +23,7 @@ class EventResource extends JsonResource
             'description'       => $this->description,
             'image'             => $this->getImageObject(),
             'meta_tags'         => $this->getMetaTags(), 
+            'created_at'        => $this->getCreatedAt(),
         ];
     }
 
