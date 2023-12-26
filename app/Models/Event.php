@@ -19,6 +19,7 @@ class Event extends Model
                     ,'social_title','social_link','social_description','social_image','social_alt_text'
                     ,'meta_title','meta_link','meta_description'];
     
+    
     public function getImageLinkAttribute()
     {
         return url('/').'/'.$this->image;
@@ -26,8 +27,8 @@ class Event extends Model
 
     public function getImageObject()
     {
-        if($this->image_url){
-            return [ 'url' =>  $this->image_url , 'alt' =>  $this->alt_text ];   
+        if($this->image_link){
+            return [ 'url' =>  $this->image_link , 'alt' =>  $this->alt_text ];   
         }
         return null;
     }

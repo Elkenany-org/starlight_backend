@@ -140,19 +140,15 @@ Route::prefix('roles')->name('roles.')->group(function () {
     Route::get('/delete/{role}' , [RoleController::class,'delete'])->name('delete');
 });
 
-
 Auth::routes();
 
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 
 Route::middleware('auth')->group(function () {
     Route::view('about', 'about')->name('about');
     Route::get('profile', [ProfileController::class, 'show'])->name('profile.show');
     Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
 });
-
 
 Route::group(['middleware' => 'auth.admin'], function () {
     Route::get('register_form', [UserController::class, 'register_form'])->name('register_form');
@@ -163,7 +159,6 @@ Route::group(['middleware' => 'auth.admin'], function () {
     Route::get('/delete/{user}' , [UserController::class,'delete'])->name('users.delete');
 });
 
-
 //meta data
 Route::prefix('metadata')->group(function () {
     Route::get('/' , [MetaDataPagesController::class,'index'])->name('metadata.index');
@@ -173,7 +168,6 @@ Route::prefix('metadata')->group(function () {
     Route::post('/update/{id}' , [MetaDataPagesController::class,'update'])->name('metadata.update');
     Route::get('/delete/{id}' , [MetaDataPagesController::class,'delete'])->name('metadata.delete');
 });
-
 
 Route::prefix('content')->group(function () {
     Route::get('/content' , [ContentController::class,'content'])->name('content.show');

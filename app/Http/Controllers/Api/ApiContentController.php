@@ -43,11 +43,11 @@ class ApiContentController extends Controller
         foreach($categories_products as $category)
         {
             $data['categories_products'][] = [
-                'id'       => $category->id,
-                'name'     => $category->name ,
-                'slug'     => $category->getSlug() ,
+                'id'        => $category->id,
+                'name'      => $category->name ,
+                'slug'      => $category->getSlug() ,
                 'images'    => [$category->getImageObject()],
-                'products' => ProductResource::collection($category->products->take(4)), 
+                'products'  => ProductResource::collection($category->products->take(4)), 
             ];
             // $products = Product::where('category_id',$category->id)->select('id','title','shortdescription','images')->limit(4)->get();
             // $data['categories_products']['products'][] = $category->products;
