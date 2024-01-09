@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
+
     public function run()
     {
         User::firstOrCreate(['email' => 'ahmedmahfouz@gmail.com'],[
@@ -18,4 +19,5 @@ class UserSeeder extends Seeder
             'role' => 'admin'
         ]);   
     }
+    
 }

@@ -230,6 +230,9 @@ class ProductController extends Controller
     
     public function search(Request $request)
     {
+        // $products = $this->live_search($request , 'description' , new Product() , 'Products' , 'products',false,'index');
+        // $view = view('Products.search' , ['products' => $products]);
+        // return response()->json($view);
         return $this->live_search($request , 'description' , new Product() , 'Products' , 'products',false,'index');
     }
     

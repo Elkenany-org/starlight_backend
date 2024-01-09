@@ -3,16 +3,17 @@
 @section('content')
 
 <div class="card-styles">
+
     <br>
-    <div class="col-12 d-flex justify-content-center align-items-center">
-        <h1 class="font-weight-bold" style="color: #0d6efd;">Edit product</h1>
-    </div>
+        <div class="col-12 d-flex justify-content-center align-items-center">
+            <h1 class="font-weight-bold" style="color: #0d6efd;">Edit product</h1>
+        </div>
     <br>
 
     @if($errors->any())
-    <div class="alert alert-danger fw-bold" role="alert">
-        <h4>{{$errors->first()}}</h4>
-    </div>
+        <div class="alert alert-danger fw-bold" role="alert">
+            <h4>{{$errors->first()}}</h4>
+        </div>
     @endif
 
     <div class="card-style-3 mb-30">
@@ -66,30 +67,22 @@
             </div>
         </div>
 
-        @php
-        $i=0;
-        @endphp
-
         <div class="input-fields">
-            <label class="block">
-                @foreach ($product->images_url as $image_url)
-                <img src="{{$image_url}}" alt="error" style="width: 200px">
-                <input type="file" name="images[]" class="block w-full mt-1 rounded-md" value="">
-            </label>
+            @foreach ($product->getImagesObjects() as $image)
+                <label class="block">
+                    <img src="{{$image['url']}}" alt="error" style="width: 200px">
+                    <input type="file" name="images[]" class="block w-full mt-1 rounded-md" value="">
+                </label>
 
-            <div class="col-12">
-                <div class="input-style-1">
-                    <label for="alt_text" dir="ltr">Alt_text</label>
-                    <input type="text" class="form-control" name="alt_text[]" value="{{$product->alt_text[$i]}}" oninput="countCharacters(this,3)">
-                    <div dir="ltr"><span id="3"></span></div>
+                <div class="col-12">
+                    <div class="input-style-1">
+                        <label for="alt_text" dir="ltr">Alt_text</label>
+                        <input type="text" class="form-control" name="alt_text[]" value="{{$image['alt']}}" oninput="countCharacters(this,3)">
+                        <div dir="ltr"><span id="3"></span></div>
+                    </div>
                 </div>
-            </div>
-            @php
-            $i++
-            @endphp
             @endforeach
         </div>
-
 
         <div class="form-group">
             <button id="add-more-field" class="btn btn-secondary btn-sm">add more</button>
@@ -121,7 +114,7 @@
         <div class="col-12">
             <div class="input-style-1">
                 <label for="social_description" dir="ltr">Social_description</label>
-                <textarea type="text" class="form-control" rows="3" name="social_description" oninput="countCharacters(this,5)">{{$product->social_description}}</textarea>
+                <textarea type="text" class="form-control" rows="3" name="social_description" oninput="countCharacters(this,5)"> {{$product->social_description}} </textarea>
                 <div dir="ltr"><span id="5"></span></div>
             </div>
         </div>
@@ -143,6 +136,7 @@
                 <div dir="ltr"><span id="6"></span></div>
             </div>
         </div>
+
         <br><br>
 
         <div class="col-12 d-flex justify-content-center align-items-center">
@@ -218,7 +212,6 @@
         }));
 
     });
-
 </script>
 
 @endsection

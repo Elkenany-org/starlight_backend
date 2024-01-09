@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 
 class ProductFilter extends ModelFilter
 {  
+    
     public function stringUpperToLower(string $value): string
     {
         return Str::lower($value);

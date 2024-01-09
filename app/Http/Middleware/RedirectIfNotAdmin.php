@@ -13,7 +13,7 @@ class RedirectIfNotAdmin
         // if (!$request->user() || !$request->user()->isAdmin()) {
         //     abort(403, 'Unauthorized action.');
         // }
-
         return $next($request);
     }
+    
 }

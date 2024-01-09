@@ -118,7 +118,6 @@ class Controller extends BaseController
             {
                 $products = $Model::all();
                 return response()->json(['products' => $products ,'search_flag'=>true , 'search_flag2'=>false]);
-
             }
             else
                 $products = $Model::onlyTrashed()->get();
