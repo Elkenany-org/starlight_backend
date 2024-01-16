@@ -69,7 +69,7 @@ class Product extends Model
         if($this->slug){
             return  str_replace(' ' , '-' , $this->slug);
         }
-        return   str_replace(' ' , '-' , $this->title);
+        return  str_replace(' ' , '-' , strtolower($this->title));
     }
     
     public function getMetaTags()

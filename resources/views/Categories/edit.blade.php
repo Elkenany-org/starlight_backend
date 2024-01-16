@@ -33,6 +33,10 @@
                             <label for="name">Name</label>
                             <input type="text" class="form-control" name="name" value="{{$category->name}}">
                         </div>
+                        <div class="d-inline-block input-style-1">
+                            <label>Slug</label>
+                            <input type="text" class="form-control" name="slug" id="slugInput" oninput="countCharacters(this,1)" value="{{$category->getSlug()}}">
+                        </div>
 
                         <br>
 

@@ -55,6 +55,7 @@ Route::prefix('products')->group(function () {
     Route::get('/title_search', [ProductController::class, 'title_search'])->name('Products.title_search');
     Route::get('/archive_title_search', [ProductController::class, 'archive_title_search'])->name('Products.archive_title_search');
     Route::post('/searchByDate', [ProductController::class, 'searchByDate'])->name('Products.searchByDate');
+    Route::get('/delete_single_image', [ProductController::class, 'deleteSingleImage'])->name('Products.deleteSingleImage');
 });
 
 

@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Product;
 use File;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 
 class ProductController extends Controller
@@ -254,16 +255,32 @@ class ProductController extends Controller
     {
         return $this->description_search($request , 'title' , new Product() , 'Products' , 'products',true,'archive');
     }
+
+    public function deleteSingleImage(Request $request)
+    {
+        $url      = substr(Str::replace(url('/') , '' , $request->url) , 1);
+        $product  = Product::where('id' , $request->product)->first();
+        $images   = $product->images;
+        $alt_texts= $product->alt_text;
+        foreach($images as $key =>  $image){
+           if($url == $image){
+                unset($images[$key]);
+                unset($alt_texts[$key]);
+           }
+        }
+        $product->update(['images' => $images , 'alt_text' => $alt_texts]);
+        Session()->flash('success', 'Image Delete Successfully'); 
+        return back();
+    }
     
     // public function searchByDate(Request $request)
     // {
     //     $date = $request->input('date');
-      
     //     $news = News::where('created_at', 'LIKE', '%'.$date.'%')->paginate(10);
-        
     //     return view('News.index')->with('news',$news)->with('search_flag',true)
     //         ->with('search_flag2' , true);
     // }
+    
 }
 
     

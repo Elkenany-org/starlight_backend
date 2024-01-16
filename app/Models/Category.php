@@ -18,7 +18,7 @@ class category extends Model implements HasMedia
     use HasFactory , InteractsWithMedia , HandleUploadFile , Filterable;
     protected $appends = ['image_url'];
     protected $hidden = ['image'];
-    protected $fillable = ['name' , 'image'];
+    protected $fillable = ['name' , 'slug' , 'image'];
     
     public function getImageUrlAttribute()
     {
@@ -63,7 +63,10 @@ class category extends Model implements HasMedia
 
     public function getSlug()
     {
-        return  str_replace(' ' , '-' , $this->name);
+        if($this->slug){
+            return  str_replace(' ' , '-' , $this->slug);
+        }
+        return  str_replace(' ' , '-' , strtolower($this->name));
     }
     
     public function getMetaTags()

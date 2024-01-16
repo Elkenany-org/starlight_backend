@@ -34,12 +34,12 @@ class CategoryController extends Controller
 
     public function store(CategoryStoreRequest $request)
     {
-        $category = Category::create(Arr::only($request->all() ,['name']));
+        $category = Category::create(Arr::only($request->all() ,['name','slug']));
         $category->storeFile($request->image , $request->alt_text);
         
         //handle store meta tag for this category
         $meta = Meta_data_pages::create(
-            Arr::except($request->all() ,['name' , 'image' , 'social_image' , 'social_alt_text' , 'alt_text'])
+            Arr::except($request->all() ,['name' , 'slug' ,'image' , 'social_image' , 'social_alt_text' , 'alt_text'])
             + ['model_type' => Category::class , 'model_id' => $category->id] 
             );
         $meta->storeFile($request->social_image , $request->social_alt_text);
@@ -60,10 +60,10 @@ class CategoryController extends Controller
         if(isset($request->image)){
             $category->updateFile($request->image ,  $request->alt_text);
         }
-        $category->update(Arr::only($request->all() ,['name']));
+        $category->update(Arr::only($request->all() ,['name','slug']));
         
         //handle update meta tag for this category
-        $category->seo()->update(Arr::except($request->all() ,['_token','name' , 'image' , 'social_image' , 'social_alt_text' ,  'alt_text']));
+        $category->seo()->update(Arr::except($request->all() ,['_token','name' , 'slug' , 'image' , 'social_image' , 'social_alt_text' ,  'alt_text']));
         if(isset($request->social_image)){
             $category->seo->updateFile($request->social_image , $request->social_alt_text);
         }

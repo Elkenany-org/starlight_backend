@@ -29,6 +29,12 @@
                             <span class="text-danger"> {{ $message }} </span>
                             @enderror
                         </div>
+                       
+                        <div class="d-inline-block input-style-1">
+                            <label>Slug</label>
+                            <input type="text" class="form-control" name="slug" id="slugInput" oninput="countCharacters(this,1)" value="{{ old('slug')}}">
+                        </div>
+                       
                         <div class="d-inline-block input-style-1">
                             <label for="image">Image</label>
                             <input name="image" type="file" class="main_image" data-height="200" accept="image/*" required />
@@ -136,6 +142,17 @@
 <script>
     $('.main_image').dropify();
     $('.social_image').dropify();
+
+    function generateSlug() {
+    const inputValue = document.getElementById('name').value;
+    // Convert the value to lowercase and replace spaces with hyphens
+    const slugValue = inputValue.toLowerCase().replace(/\s+/g, '-');
+    // Set the slug value to the slug input field
+    document.getElementById('slugInput').value = slugValue;
+    }
+
+    // Attach the function to the input field's change event
+    document.getElementById('name').addEventListener('input', generateSlug);
 
     function countCharacters(inputField, id) {
         var charCountElement = document.getElementById(id);

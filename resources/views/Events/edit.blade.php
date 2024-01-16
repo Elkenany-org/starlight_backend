@@ -32,7 +32,7 @@
               <div class="col-12">
                 <div class="input-style-1">
                   <label>Slug</label>
-                  <input type="text" class="form-control" name="slug" id="slugInput" value="{{$event->slug}}" oninput="countCharacters(this,1)">
+                  <input type="text" class="form-control" name="slug" id="slugInput" value="{{$event->getSlug()}}" oninput="countCharacters(this,1)">
                   <div><span id="1"></span></div>
                 </div>
               </div>
