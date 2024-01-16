@@ -20,7 +20,7 @@ class Product extends Model
     protected $dates = ['deleted_at'];
     protected $fillable = ['title','images','category_id','shortdescription','description','alt_text','focus_keyword'
                 ,'social_title','social_link','social_image','social_description','social_alt_text'
-                ,'meta_title','meta_link','meta_description'];
+                ,'meta_title','meta_link','meta_description' , 'slug'];
     protected $casts = [
         'images' => 'array',
         'alt_text' => 'array'
@@ -66,7 +66,10 @@ class Product extends Model
 
     public function getSlug()
     {
-        return   str_replace(' ' , '-' , $this->title) ;
+        if($this->slug){
+            return  str_replace(' ' , '-' , $this->slug);
+        }
+        return   str_replace(' ' , '-' , $this->title);
     }
     
     public function getMetaTags()

@@ -31,10 +31,10 @@ class ContentController extends Controller
         $content = Content::where([['page_name',$request->page_name],['type',$request->type]])->first();
         
         $request->validate([
-            'description' => 'required'
+            'description' => 'required',
+            'title'       => 'nullable'
         ]);
         
-
         if($request->image != null)
         {
             $image_path = public_path($content->image);
@@ -48,8 +48,8 @@ class ContentController extends Controller
             $content->image = $path.'/'.$image_name;
         }
         
-        $content->description = $request->description;
-        
+        $content->description  =  $request->description;
+        $content->title        =  $request->title;
         $content->save();
 
         Session()->flash('success', 'Content Updated Successfully'); 

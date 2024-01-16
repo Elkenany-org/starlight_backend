@@ -16,8 +16,8 @@ class Event extends Model
     protected $appends = ['image_link'];
     
     protected $fillable = ['title','shortdescription','description','image','alt_text','focus_keyword'
-                    ,'social_title','social_link','social_description','social_image','social_alt_text'
-                    ,'meta_title','meta_link','meta_description'];
+                                ,'social_title','social_link','social_description','social_image','social_alt_text'
+                                ,'meta_title','meta_link','meta_description' , 'slug'];
     
     
     public function getImageLinkAttribute()
@@ -45,6 +45,9 @@ class Event extends Model
 
     public function getSlug()
     {
+        if($this->slug){
+            return  str_replace(' ' , '-' , $this->slug);
+        }
         return  str_replace(' ' , '-' , $this->title);
     }
     

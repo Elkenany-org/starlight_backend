@@ -27,7 +27,7 @@ class ApiContentController extends Controller
         
         foreach($contents as $content)
         {
-            $data[$content->type] = ['image' => $content->image_link ,'desc' => $content->description];
+            $data[$content->type] = ['image' => $content->image_link ,'desc' => $content->description , 'title' => $content->title];
         }
 
         foreach($categories as $category)

@@ -29,6 +29,15 @@
                             <div dir="ltr"><span id="1"></span></div>
                         </div>
                     </div>
+
+                    <div class="col-12">
+                        <div class="input-style-1">
+                            <label for="title">Slug</label>
+                            <input type="text" class="form-control" value="{{$product->slug}}" name="slug" id="name" oninput="countCharacters(this,1)">
+                            <div dir="ltr"><span id="1"></span></div>
+                        </div>
+                    </div>
+
                     <div class="col-12">
                         <div class="input-style-1">
                             <label for="category_id">Category</label>
@@ -69,6 +78,7 @@
 
         <div class="input-fields">
             @foreach ($product->getImagesObjects() as $image)
+                
                 <label class="block">
                     <img src="{{$image['url']}}" alt="error" style="width: 200px">
                     <input type="file" name="images[]" class="block w-full mt-1 rounded-md" value="">
@@ -81,6 +91,15 @@
                         <div dir="ltr"><span id="3"></span></div>
                     </div>
                 </div>
+
+                <div class="text-end m-0 p-0">
+                    <form  action=""  method="POST">
+                        @csrf
+                        <input type="hidden" value="{{$image['url']}}">
+                        <button class="btn btn-light text-danger"> <i class="fas fa-trash-alt"></i> </button> 
+                    </form> 
+                </div>
+
             @endforeach
         </div>
 

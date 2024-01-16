@@ -3,22 +3,26 @@
 @section('content')
 
 <div class="card-styles">
+
     <br>           
-    <div class="col-12 d-flex justify-content-center align-items-center">
-      <h1 class="font-weight-bold" style="color: #0d6efd;">{{$content->type}} of {{$content->page_name}} page</h1>
-    </div>
+        <div class="col-12 d-flex justify-content-center align-items-center">
+            <h1 class="font-weight-bold" style="color: #0d6efd;">{{$content->type}} of {{$content->page_name}} page</h1>
+        </div>
     <br>
+
     @if($errors->any())
         <div class="alert alert-danger fw-bold" role="alert">
             <h4>{{$errors->first()}}</h4>
         </div>
     @endif
+    
     <br>
+
     <div class="card-style-3 mb-30">
         <br>
         <div class="card-content">            
             <div class="row">
-                <form action="{{route('content.update',['page_name' => $content->page_name, 'type' => $content->type])}}" method="POST" enctype="multipart/form-data">
+                <form action="{{route('content.update',['page_name' => $content->page_name , 'type' => $content->type])}}" method="POST" enctype="multipart/form-data">
                     @csrf                
                     <div class="col-12">
                         <div class="input-style-1">
@@ -29,13 +33,21 @@
                         </div>
                     </div>
 
-
                     <div class="col-12">
                         <div class="input-style-1">
                             <label>Description</label>
                             <textarea name="description" class="form-control" rows="6">{{$content->description}}</textarea>
                         </div>
                     </div>
+
+                    @if($content->page_name == 'home')
+                        <div class="col-12">
+                            <div class="input-style-1">
+                                <label>title</label>
+                                <input name="title" class="form-control" value="{{$content->title}}">
+                            </div>
+                        </div>
+                    @endif
 
                     @can('main_pages.edit')
                         <div class="col-12">

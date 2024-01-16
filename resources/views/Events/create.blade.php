@@ -21,18 +21,27 @@
 
               <div class="col-12">
                 <div class="input-style-1">
-                  <label>Title</label>
-                  <input type="text" class="form-control" name="title" oninput="countCharacters(this,1)"
-                  value="{{old('title')}}">
-                  <div><span id="1"></span></div>
+                    <label>Title</label>
+                    <input type="text" class="form-control" name="title" id="titleInput" oninput="countCharacters(this,1)"
+                        value="{{old('title')}}">
+                    <div><span id="1"></span></div>
+                </div>
+              </div>
+
+              <div class="col-12">
+                <div class="input-style-1">
+                    <label>Slug</label>
+                    <input type="text" class="form-control" name="slug" id="slugInput" oninput="countCharacters(this,1)"
+                        value="{{old('slug')}}">
+                    <div><span id="1"></span></div>
                 </div>
               </div>
               
               <div class="col-12">
                 <div class="input-style-1">
-                  <label>Short Description</label>
-                  <textarea name="shortdescription" rows="3" oninput="countCharacters(this,2)">{{old('shortdescription')}}</textarea>
-                  <div><span id="2"></span></div>
+                    <label>Short Description</label>
+                    <textarea name="shortdescription" rows="3" oninput="countCharacters(this,2)">{{old('shortdescription')}}</textarea>
+                    <div><span id="2"></span></div>
                 </div>
               </div>
               
@@ -68,13 +77,12 @@
               </div>
               
               <br><br>              
-              <div class="col-12 d-flex justify-content-center align-items-center">
-                <h1 class="font-weight-bold" style="color: #0d6efd;">Social Media Data</h1>
-              </div>
-
+                <div class="col-12 d-flex justify-content-center align-items-center">
+                  <h1 class="font-weight-bold" style="color: #0d6efd;">Social Media Data</h1>
+                </div>
               <br><br>
 
-              <div class="col-12">
+              <div class="col-12">  
                 <div class="input-style-1">
                   <label>Social title</label>
                   <input type="text" class="form-control" name="social_title" oninput="countCharacters(this,5)"
@@ -158,26 +166,18 @@
 @push('js')
 
     <script>
-      // tinymce.init({
-      //   selector: "#textarea1",
-      //   directionality: 'rtl',
-      //   plugins:
-      //     "anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss",
-      //   toolbar:
-      //     "undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat",
-      //   tinycomments_mode: "embedded",
-      //   tinycomments_author: "Author name",
-      //   mergetags_list: [
-      //     { value: "First.Name", title: "First Name" },
-      //     { value: "Email", title: "Email" },
-      //   ],
-      // });
+     
+      function generateSlug() {
+        const inputValue = document.getElementById('titleInput').value;
+        // Convert the value to lowercase and replace spaces with hyphens
+        const slugValue = inputValue.toLowerCase().replace(/\s+/g, '-');
+        // Set the slug value to the slug input field
+        document.getElementById('slugInput').value = slugValue;
+      }
+
+      // Attach the function to the input field's change event
+      document.getElementById('titleInput').addEventListener('input', generateSlug);
     
-      // CKEDITOR.replace('editor',{
-      //   filebrowserUploadUrl: '{{ route("upload-ck-images" , ["_token" => csrf_token() ]) }}',
-      //   filebrowserUploadMethod: 'form'
-      // }); 
-   
       function countCharacters(inputField , id) {
         var charCountElement = document.getElementById(id);
         charCountElement.innerText = inputField.value.length;

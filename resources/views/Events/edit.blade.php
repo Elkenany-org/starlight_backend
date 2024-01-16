@@ -2,16 +2,19 @@
 
 @section('content')
 <div class="card-styles">
-  <br>           
-    <div class="col-12 d-flex justify-content-center align-items-center">
-      <h1 class="font-weight-bold" style="color: #0d6efd;">Add Event</h1>
-    </div>
-  <br>
-  @if($errors->any())
-    <div class="alert alert-danger fw-bold" role="alert">
-        <h4>{{$errors->first()}}</h4>
-    </div>
-  @endif
+
+    <br>           
+      <div class="col-12 d-flex justify-content-center align-items-center">
+        <h1 class="font-weight-bold" style="color: #0d6efd;">Add Event</h1>
+      </div>
+    <br>
+
+    @if($errors->any())
+      <div class="alert alert-danger fw-bold" role="alert">
+          <h4>{{$errors->first()}}</h4>
+      </div>
+    @endif
+
     <div class="card-style-3 mb-30">
       <div class="card-content">            
         <div class="row">
@@ -21,7 +24,15 @@
               <div class="col-12">
                 <div class="input-style-1">
                   <label>Title</label>
-                  <input type="text" class="form-control" name="title" value="{{$event->title}}" oninput="countCharacters(this,1)">
+                  <input type="text" class="form-control" name="title" id="titleInput " value="{{$event->title}}" oninput="countCharacters(this,1)">
+                  <div><span id="1"></span></div>
+                </div>
+              </div>
+
+              <div class="col-12">
+                <div class="input-style-1">
+                  <label>Slug</label>
+                  <input type="text" class="form-control" name="slug" id="slugInput" value="{{$event->slug}}" oninput="countCharacters(this,1)">
                   <div><span id="1"></span></div>
                 </div>
               </div>
@@ -57,6 +68,7 @@
                   <div><span id="33"></span></div>
                 </div>
               </div>
+
               <div class="col-12">
                 <div class="input-style-1">
                   <label>Focus_keyword</label>
@@ -70,6 +82,7 @@
                 <h1 class="font-weight-bold" style="color: #0d6efd;">Social Media Data</h1>
               </div>
               <br><br>
+
               <div class="col-12">
                 <div class="input-style-1">
                   <label>Social title</label>
@@ -77,6 +90,7 @@
                   <div><span id="15"></span></div>
                 </div>
               </div>
+
               <div class="col-12">
                 <div class="input-style-1">
                   <label>Social description</label>
@@ -84,6 +98,7 @@
                   <div><span id="5"></span></div>
                 </div>
               </div>
+
               <div class="col-12">
                 <div class="input-style-1">
                   <label>Social image</label>
@@ -93,6 +108,7 @@
                   <input type="file" class="file" name="social_image">
                 </div>
               </div>
+
               <div class="col-12">
                 <div class="input-style-1">
                   <label>Social_alt_text</label>
@@ -105,6 +121,7 @@
               <div class="col-12 d-flex justify-content-center align-items-center">
                 <h1 class="font-weight-bold" style="color: #0d6efd;">Meta Data</h1>
               </div>
+
               <br><br>
               <div class="col-12">
                 <div class="input-style-1">
@@ -113,6 +130,7 @@
                   <div dir="ltr"><span id="7"></span></div>
                 </div>
               </div>
+
               <div class="col-12">
                 <div class="input-style-1">
                   <label for="meta_link" dir="ltr">Meta_link</label>
@@ -134,6 +152,7 @@
                     <input class="main-btn primary-btn btn-hover w-25 text-center spinner-btn" type="submit" value="Update">
                   </div>
               </div>
+
               </div>
             </form> 
       </div>
@@ -142,29 +161,31 @@
 
 </div>
 
-    <script>
-      // tinymce.init({
-      //   selector: "#textarea1",
-      //   directionality: 'rtl',
-      //   plugins:
-      //     "anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss",
-      //   toolbar:
-      //     "undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat",
-      //   tinycomments_mode: "embedded",
-      //   tinycomments_author: "Author name",
-      //   mergetags_list: [
-      //     { value: "First.Name", title: "First Name" },
-      //     { value: "Email", title: "Email" },
-      //   ],
-      // });
+@endsection
 
+@push('js')
+
+ <script>
+
+      // function generateSlug() {
+      //   const inputValue = document.getElementById('titleInput').value;
+      //   // Convert the value to lowercase and replace spaces with hyphens
+      //   const slugValue = inputValue.toLowerCase().replace(/\s+/g, '-');
+      //   // Set the slug value to the slug input field
+      //   document.getElementById('slugInput').value = slugValue;
+      // }
+
+      // // Attach the function to the input field's change event
+      // document.getElementById('titleInput').addEventListener('input', generateSlug);
+    
       function countCharacters(inputField , id) {
         var charCountElement = document.getElementById(id);
         charCountElement.innerText = inputField.value.length;
       }
-        
+
     </script>
-@endsection
+        
+@endpush
 
     
   

@@ -46,6 +46,7 @@ class EventController extends Controller
             'shortdescription'=> 'required',
             'description'=> 'required',
             'image'=> 'required',
+            'slug'  => 'nullable',
         ]);
         $image_name = $request->image->getClientOriginalName();
         $image_name = time().$image_name;
@@ -62,12 +63,13 @@ class EventController extends Controller
         }
         
         Event::create([
-            'title'=> $request->title,
-            'shortdescription'=> $request->shortdescription,
-            'description'=> $request->description,
-            'image'=> $path.'/'.$image_name,
-            'alt_text'=> $request->alt_text,
-            'focus_keyword'=> $request->focus_keyword,
+            'title'            => $request->title,
+            'shortdescription' => $request->shortdescription,
+            'description'      => $request->description,
+            'image'            => $path.'/'.$image_name,
+            'alt_text'         => $request->alt_text,
+            'focus_keyword'    => $request->focus_keyword,
+            'slug'             => $request->slug,
 
             'social_title'=> $request->social_title,
             'social_description'=> $request->social_description,
@@ -93,7 +95,8 @@ class EventController extends Controller
         $request->validate([
             'title' => 'required',
             'shortdescription' => 'required',
-            'description' => 'required'
+            'description' => 'required',
+            'sulg'        => 'nullable',
         ]);
         $event = Event::find($id);
         
@@ -133,11 +136,12 @@ class EventController extends Controller
             $request->social_image->move($path , $social_image_name);
             $article->social_image = $social_image_name;
         }
-        $event->social_alt_text = $request->social_alt_text;
+
+        $event->social_alt_text  = $request->social_alt_text;
+        $event->slug             = $request->slug;
         
-        
-        $event->meta_title = $request->meta_title;
-        $event->meta_link = $request->meta_link;
+        $event->meta_title       = $request->meta_title;
+        $event->meta_link        = $request->meta_link;
         $event->meta_description = $request->meta_description;
 
         $event->save();

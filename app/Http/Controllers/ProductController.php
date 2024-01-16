@@ -43,12 +43,14 @@ class ProductController extends Controller
     
     public function store(Request $request)
     {
+
         $this->validate($request , [
-            'title'=> 'required',
-            'category_id'=> 'required',
-            'images'=> 'required|array',
-            'shortdescription'=> 'required',
-            'description'=> 'required',
+            'title'            => 'required',
+            'category_id'      => 'required',
+            'images'           => 'required|array',
+            'shortdescription' => 'required',
+            'description'      => 'required',
+            'slug'             => 'nullable',
         ]);
         
         $images_name = [];
@@ -74,24 +76,25 @@ class ProductController extends Controller
             $path = 'images/social/products';
             $request->social_image->move($path , $social_image_name);
         }
-        
+    
         Product::create([
-            'title'=> $request->title,
-            'category_id'=> $request->category_id,
-            'images'=> $images_name,
-            'shortdescription'=> $request->shortdescription,
-            'description'=> $request->description,
-            'alt_text'=> $images_alt,
-            'focus_keyword'=> $request->focus_keyword,
+            'title'            => $request->title,
+            'category_id'      => $request->category_id,
+            'images'           => $images_name,
+            'shortdescription' => $request->shortdescription,
+            'description'      => $request->description,
+            'alt_text'         => $images_alt,
+            'focus_keyword'    => $request->focus_keyword,
+            'slug'             => $request->slug,
 
-            'social_title'=> $request->social_title,
-            'social_image'=> $social_image_name,
-            'social_description'=> $request->social_description,
-            'social_alt_text'=> $request->social_alt_text,
+            'social_title'       => $request->social_title,
+            'social_image'       => $social_image_name,
+            'social_description' => $request->social_description,
+            'social_alt_text'    => $request->social_alt_text,
 
-            'meta_title'=> $request->meta_title,
-            'meta_link'=> $request->meta_link,
-            'meta_description'=> $request->meta_description,
+            'meta_title'         => $request->meta_title,
+            'meta_link'          => $request->meta_link,
+            'meta_description'   => $request->meta_description,
         ]);
         
         Session()->flash('success', 'Product Added Successfully'); 
@@ -164,7 +167,8 @@ class ProductController extends Controller
         $product->category_id = $request->category_id;
         $product->description = $request->description;
         $product->focus_keyword = $request->focus_keyword;
-        
+        $product->slug  = $request->slug;
+
         $product->social_title = $request->social_title;
         $product->social_description = $request->social_description;
 

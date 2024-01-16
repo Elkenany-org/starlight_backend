@@ -22,10 +22,19 @@
                     <div class="col-12">
                         <div class="input-style-1">
                             <label>Title</label>
-                            <input type="text" class="form-control" name="title" oninput="countCharacters(this,1)" value="{{ old('title')}}">
+                            <input type="text" class="form-control" name="title" id="titleInput" oninput="countCharacters(this,1)" value="{{ old('title')}}">
                             <div><span id="1"></span></div>
                         </div>
                     </div>
+
+                    <div class="col-12">
+                        <div class="input-style-1">
+                            <label>Slug</label>
+                            <input type="text" class="form-control" name="slug" id="slugInput" oninput="countCharacters(this,1)" value="{{ old('slug')}}">
+                            <div><span id="1"></span></div>
+                        </div>
+                    </div>
+
                     <div class="col-12">
                         <div class="input-style-1">
                             <label>Category</label>
@@ -175,19 +184,19 @@
     $(function() {
 
         var more_fields = `
-                    <label class="block">
-                      <span class="text-gray-700">Images</span>
-                      <input type="file" name="images[]" 
-                        class="block w-full mt-1 rounded-md" placeholder="" multiple/>
-                    </label>
-                    <div class="block">
-                      <div class="input-style-1">
-                        <label for="alt_text" dir="ltr">Alt_text</label>
-                        <input type="text" class="form-control" name="alt_text[]" oninput="countCharacters(this,3)">
-                        <div dir="ltr"><span id="3"></span></div>
-                      </div>
+                <label class="block">
+                    <span class="text-gray-700">Images</span>
+                    <input type="file" name="images[]" 
+                    class="block w-full mt-1 rounded-md" placeholder="" multiple/>
+                </label>
+                <div class="block">
+                    <div class="input-style-1">
+                    <label for="alt_text" dir="ltr">Alt_text</label>
+                    <input type="text" class="form-control" name="alt_text[]" oninput="countCharacters(this,3)">
+                    <div dir="ltr"><span id="3"></span></div>
                     </div>
-                `;
+                </div>
+            `;
 
         $('#add-more-field').on('click', (function(e) {
             e.preventDefault();
@@ -196,5 +205,15 @@
 
     });
 
+     function generateSlug() {
+        const inputValue = document.getElementById('titleInput').value;
+        // Convert the value to lowercase and replace spaces with hyphens
+        const slugValue = inputValue.toLowerCase().replace(/\s+/g, '-');
+        // Set the slug value to the slug input field
+        document.getElementById('slugInput').value = slugValue;
+      }
+
+      // Attach the function to the input field's change event
+      document.getElementById('titleInput').addEventListener('input', generateSlug);
 </script>
 @endsection
