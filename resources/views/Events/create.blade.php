@@ -130,14 +130,15 @@
                   <div><span id="9"></span></div>
                 </div>
               </div>
-              <div class="col-12">
+
+              {{-- <div class="col-12">
                 <div class="input-style-1">
                   <label>Meta link</label>
                   <input type="text" class="form-control" name="meta_link" oninput="countCharacters(this,10)"
                   value="{{old('meta_link')}}">
                   <div><span id="10"></span></div>
                 </div>
-              </div>
+              </div> --}}
               
               <div class="col-12">
                 <div class="input-style-1">

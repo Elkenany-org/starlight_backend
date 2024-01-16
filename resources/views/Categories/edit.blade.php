@@ -110,13 +110,13 @@
                         </div>
                     </div>
 
-                    <div class="col-12">
+                    {{-- <div class="col-12">
                         <div class="input-style-1">
                             <label for="meta_link" dir="ltr">Meta_link</label>
                             <input type="text" class="form-control" dir="ltr" required value="{{ $category->seo->link }}" name="link" oninput="countCharacters(this,8)">
                             <div><span id="8"></span></div>
                         </div>
-                    </div>
+                    </div> --}}
 
                     <div class="col-12">
                         <div class="input-style-1">
