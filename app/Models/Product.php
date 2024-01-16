@@ -54,7 +54,7 @@ class Product extends Model
     public function getCategoryObject()
     {
         if($this->category){
-            return [ 'id' => $this->category->id , 'name' => $this->category->name ];
+            return [ 'id' => $this->category->id , 'name' => $this->category->name , 'slug' => $this->category->getSlug()];
         }
         return null;
     }
