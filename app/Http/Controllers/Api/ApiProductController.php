@@ -12,7 +12,7 @@ class ApiProductController extends Controller
     
     public function index(Request $request)
     {
-        $products = Product::filter($request->all())->orderBy('id','desc')->get();
+        $products = Product::filter($request->all())->orderBy('is_featured', 'desc')->latest()->get();
         return $this->returnJSON(ProductResource::collection($products));
     }
     

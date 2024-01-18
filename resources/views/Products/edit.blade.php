@@ -22,6 +22,7 @@
 
                 <form action="{{route('Products.update',$product->id)}}" method="POST" enctype="multipart/form-data">
                     @csrf
+
                     <div class="col-12">
                         <div class="input-style-1">
                             <label for="title">Title</label>
@@ -38,17 +39,30 @@
                         </div>
                     </div>
 
-                    <div class="col-12">
-                        <div class="input-style-1">
-                            <label for="category_id">Category</label>
-                            <select name="category_id" class="form-control w-25">
-                                <option value="{{ $product->category->id }}">{{ $product->category->name }}</option>
-                                @foreach($categories as $category)
-                                @if ($category != $product->category)
-                                <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                @endif
-                                @endforeach
-                            </select>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="input-style-1">
+                                <label for="category_id">Category</label>
+                                <select name="category_id" class="form-control w-50">
+                                    <option value="{{ $product->category->id }}">{{ $product->category->name }}</option>
+                                    @foreach($categories as $category)
+                                        @if ($category != $product->category)
+                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-6">
+                            <label class="form-check-label text-dark" for="featured">
+                                Is Featured
+                            </label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="featured" name="is_featured" 
+                                style="width: 30px;height:30px;" value="1"
+                                @if($product->is_featured == '1') checked @endif>
+                            </div>
                         </div>
                     </div>
 
@@ -79,15 +93,13 @@
         <div class="input-fields">
             @foreach ($product->getImagesObjects() as $image)
 
-                <div class="text-end m-0 p-0">
-                   
-                </div>
-                
+                <div class="text-end m-0 p-0"></div>
+
                 <label class="block">
-                     <a href="{{ route('Products.deleteSingleImage',['url='.$image['url'] , 'product='.$product->id]) }}">
+                    <a href="{{ route('Products.deleteSingleImage',['url='.$image['url'] , 'product='.$product->id]) }}">
                         <span class="text-danger"> <i class="fas fa-trash-alt"></i> </span>
-                    </a>    
-                    <br/>
+                    </a>
+                    <br />
                     <img src="{{$image['url']}}" alt="error" style="width: 200px">
                     <input type="file" name="images[]" class="block w-full mt-1 rounded-md" value="">
                 </label>
@@ -142,7 +154,7 @@
             <div class="input-style-1">
                 <label for="social_image" dir="ltr">Social_image</label>
                 @if ($product->social_image != null)
-                    <img src="{{url('/').'/'.$product->social_image}}" alt="error" style="width: 200px">
+                <img src="{{url('/').'/'.$product->social_image}}" alt="error" style="width: 200px">
                 @endif
                 <input type="file" class="file" name="social_image">
             </div>
@@ -172,12 +184,12 @@
         </div>
 
         {{-- <div class="col-12">
-            <div class="input-style-1">
-                <label for="meta_link" dir="ltr">Meta_link</label>
-                <input type="text" class="form-control" dir="ltr" name="meta_link" value="{{$product->meta_link}}" oninput="countCharacters(this,8)">
-                <div><span id="8"></span></div>
-            </div>
-        </div> --}}
+                <div class="input-style-1">
+                    <label for="meta_link" dir="ltr">Meta_link</label>
+                    <input type="text" class="form-control" dir="ltr" name="meta_link" value="{{$product->meta_link}}" oninput="countCharacters(this,8)">
+                    <div><span id="8"></span></div>
+                </div>
+            </div> --}}
 
         <div class="col-12">
             <div class="input-style-1">
@@ -193,8 +205,8 @@
             </div>
         </div>
 
-    </div>
-    </form>
+</div>
+</form>
 </div>
 </div>
 </div>
@@ -204,6 +216,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <script>
+
     function countCharacters(inputField, id) {
         var charCountElement = document.getElementById(id);
         charCountElement.innerText = inputField.value.length;
@@ -231,6 +244,7 @@
         }));
 
     });
+
 </script>
 
 @endsection

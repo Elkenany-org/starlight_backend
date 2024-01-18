@@ -22,7 +22,7 @@ class ProductController extends Controller
     
     public function index()
     {
-        $products = Product::latest()->paginate(10);
+        $products = Product::orderBy('is_featured', 'desc')->latest()->paginate(10);
         return view('Products.index',compact('products'))
             ->with('search_flag',true)
             ->with('search_flag2',true);
@@ -169,6 +169,7 @@ class ProductController extends Controller
         $product->description = $request->description;
         $product->focus_keyword = $request->focus_keyword;
         $product->slug  = $request->slug;
+        $product->is_featured = $request->has('is_featured') ? 1 : 0;
 
         $product->social_title = $request->social_title;
         $product->social_description = $request->social_description;

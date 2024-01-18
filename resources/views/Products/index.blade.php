@@ -35,7 +35,13 @@
                 @foreach($products as $product)
                 <tr style="border-bottom: 1px double #5d657b">
                     <th scope="row" style="color: #2f80ed">{{$counter++}}</th>
-                    <td><img src="{{$product->images_url[0]}}" alt="error" style="width: 60px"></td>
+                    <td>
+                        @if(count($product->images_url))
+                            <img src="{{$product->images_url[0]}}" alt="error" style="width: 60px">
+                        @else
+                            -
+                        @endif
+                    </td>
                     <td>{{$product->title}}</td>
                     <td>{{$product->category->name}}</td>
                     <td>{{($product->created_at)->format('d/m/Y h:i:s')}}</td>
