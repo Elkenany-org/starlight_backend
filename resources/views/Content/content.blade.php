@@ -33,13 +33,6 @@
                         </div>
                     </div>
 
-                    <div class="col-12">
-                        <div class="input-style-1">
-                            <label>Description</label>
-                            <textarea name="description" class="form-control" rows="6">{{$content->description}}</textarea>
-                        </div>
-                    </div>
-
                     @if($content->page_name == 'home')
                         <div class="col-12">
                             <div class="input-style-1">
@@ -48,6 +41,13 @@
                             </div>
                         </div>
                     @endif
+
+                    <div class="col-12">
+                        <div class="input-style-1">
+                            <label>Description</label>
+                            <textarea name="description" class="mini-editor" id="des">{{$content->description}}</textarea>
+                        </div>
+                    </div>
 
                     @can('main_pages.edit')
                         <div class="col-12">

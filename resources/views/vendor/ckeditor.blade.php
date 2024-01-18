@@ -13,10 +13,10 @@
                         "name": "styles"
                         , "groups": ["styles"]
                     }
-                    , {
-                        "name": 'colors'
-                        , "groups": ['TextColor', 'BGColor']
-                    }
+                    // , {
+                    //     "name": 'colors'
+                    //     , "groups": ['TextColor', 'BGColor']
+                    // }
                     , {
                         "name": 'paragraph'
                         , "groups": ['list']
@@ -24,7 +24,7 @@
                  ], 
 
                 // Remove the redundant buttons from toolbar groups defined above.
-                removeButtons: 'Underline,Strike,Subscript,Superscript,Anchor,Styles,Specialchar,PasteFromWord'
+                removeButtons: 'Font,Underline,Strike,Subscript,Superscript,Anchor,Styles,Specialchar,PasteFromWord'
             });
         });
 
