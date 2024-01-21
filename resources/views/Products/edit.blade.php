@@ -34,8 +34,8 @@
                     <div class="col-12">
                         <div class="input-style-1">
                             <label for="title">Slug</label>
-                            <input type="text" class="form-control" value="{{$product->getSlug()}}" name="slug" id="name" oninput="countCharacters(this,1)">
-                            <div dir="ltr"><span id="1"></span></div>
+                            <input type="text" class="form-control" value="{{$product->getSlug()}}" name="slug" id="slug" oninput="countCharacters(this,11)">
+                            <div dir="ltr"><span id="11"></span></div>
                         </div>
                     </div>
 

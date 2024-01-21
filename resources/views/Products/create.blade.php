@@ -30,8 +30,8 @@
                     <div class="col-12">
                         <div class="input-style-1">
                             <label>Slug</label>
-                            <input type="text" class="form-control" name="slug" id="slugInput" oninput="countCharacters(this,1)" value="{{ old('slug')}}">
-                            <div><span id="1"></span></div>
+                            <input type="text" class="form-control" name="slug" id="slugInput" oninput="countCharacters(this,11)" value="{{ old('slug')}}">
+                            <div><span id="11"></span></div>
                         </div>
                     </div>
 
@@ -138,6 +138,7 @@
             <h1 class="font-weight-bold" style="color: #0d6efd;">Meta Data</h1>
         </div>
         <br><br>
+
         <div class="col-12">
             <div class="input-style-1">
                 <label>Title_tag</label>
@@ -145,6 +146,7 @@
                 <div><span id="9"></span></div>
             </div>
         </div>
+
         {{-- <div class="col-12">
             <div class="input-style-1">
                 <label>Meta_link</label>
@@ -205,15 +207,15 @@
 
     });
 
-     function generateSlug() {
+    function generateSlug() {
         const inputValue = document.getElementById('titleInput').value;
         // Convert the value to lowercase and replace spaces with hyphens
         const slugValue = inputValue.toLowerCase().replace(/\s+/g, '-');
         // Set the slug value to the slug input field
         document.getElementById('slugInput').value = slugValue;
-      }
+    }
 
-      // Attach the function to the input field's change event
-      document.getElementById('titleInput').addEventListener('input', generateSlug);
+    // Attach the function to the input field's change event
+    document.getElementById('titleInput').addEventListener('input', generateSlug);
 </script>
 @endsection

@@ -47,7 +47,7 @@ class Product extends Model
         $arr=[];
         foreach($this->images as $key => $image)
         {  
-            $arr[] = [ 'url' => url('/').'/'.$image , 'alt' => $this-> $this->alt_text[$key] ?? 'star-light-photo' ];
+            $arr[] = [ 'url' => url('/').'/'.$image , 'alt' => $this->alt_text[$key] ?? 'star-light-photo' ];
         }
         return $arr;
     }

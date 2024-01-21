@@ -31,9 +31,9 @@
               <div class="col-12">
                 <div class="input-style-1">
                     <label>Slug</label>
-                    <input type="text" class="form-control" name="slug" id="slugInput" oninput="countCharacters(this,1)"
+                    <input type="text" class="form-control" name="slug" id="slugInput" oninput="countCharacters(this,11)"
                         value="{{old('slug')}}">
-                    <div><span id="1"></span></div>
+                    <div><span id="11"></span></div>
                 </div>
               </div>
               

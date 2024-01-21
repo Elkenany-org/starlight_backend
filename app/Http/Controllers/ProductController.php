@@ -8,7 +8,6 @@ use File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
-
 class ProductController extends Controller
 {
 
@@ -44,7 +43,6 @@ class ProductController extends Controller
     
     public function store(Request $request)
     {
-
         $this->validate($request , [
             'title'            => 'required',
             'category_id'      => 'required',
@@ -132,6 +130,8 @@ class ProductController extends Controller
             }
             $product->alt_text = $images_alt;
         }
+        
+        // dd($request->all() , $product->alt_text);
 
         if($request->images != null)
         {
