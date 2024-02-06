@@ -21,6 +21,7 @@ class EventResource extends JsonResource
             'slug'              => $this->getSlug(),
             'short_description' => $this->shortdescription,
             'description'       => $this->description,
+            'shared_links'      => $this->getSharedLinks(),
             'image'             => $this->getImageObject(),
             'meta_tags'         => $this->getMetaTags(), 
             'created_at'        => $this->getCreatedAt(),

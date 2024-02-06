@@ -55,4 +55,5 @@ class Permission extends SpatiePermission
             ];
         });
     }
+    
 }

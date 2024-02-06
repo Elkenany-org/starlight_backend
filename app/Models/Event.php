@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-
+use Jorenvh\Share\Share;
 
 class Event extends Model
 {
@@ -64,6 +64,17 @@ class Event extends Model
             'social_image'       => $this->seo?->getImage()         ?? url($this->social_image),
             'social_alt_image'   => $this->seo?->getAlt()           ?? $this->social_alt_text,
         ];
+    }
+
+    public function getSharedLinks()
+    {
+        return (new Share())->page('https://starlight-ae.com/'. '/' . 'event-details' . '/' . $this->id .'/' . $this->getSlug() , $this->seo?->title ?? $this->title)
+                    ->facebook()
+                    ->whatsapp()
+                    ->twitter()
+                    ->linkedin()
+                    ->telegram()
+                    ->getRawLinks();
     }
     
 }

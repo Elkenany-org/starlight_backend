@@ -7,7 +7,7 @@ use EloquentFilter\Filterable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-
+use Jorenvh\Share\Share;
 
 class Product extends Model
 {
@@ -91,6 +91,17 @@ class Product extends Model
     public function modelFilter()
     {
         return $this->provideFilter(ProductFilter::class);
+    }
+
+    public function getSharedLinks()
+    {
+        return (new Share())->page('https://starlight-ae.com/'. '/' . 'product' . '/' .$this->id .'/'. $this->category->getSlug() .'/' . $this->getSlug() , $this->seo?->title ?? $this->title)
+                    ->facebook()
+                    ->whatsapp()
+                    ->twitter()
+                    ->linkedin()
+                    ->telegram()
+                    ->getRawLinks();
     }
     
 }

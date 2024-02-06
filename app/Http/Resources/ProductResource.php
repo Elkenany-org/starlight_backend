@@ -21,6 +21,7 @@ class ProductResource extends JsonResource
             'slug'              => $this->getSlug(),
             'short_description' => $this->shortdescription,
             'description'       => $this->description,
+            'shared_links'      => $this->getSharedLinks(),
             'images'            => $this->getImagesObjects(),
             'category'          => $this->getCategoryObject(),
             'meta_tags'         => $this->getMetaTags(),
